@@ -1,0 +1,73 @@
+.MenuBar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 75%;
+  background-color: #eee;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  img {
+    width: 50px;
+    height: 50px;
+  }
+  &__login {
+    background-color: #f72b3f;
+    width: 100%;
+    margin-top: 10px;
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 10px;
+      list-style: none;
+      li {
+        &:nth-of-type(2),
+        &:nth-of-type(3) {
+          font-size: 1.7rem;
+          font-weight: bold;
+          color: #fefff3;
+        }
+        &:nth-of-type(3) {
+          position: relative;
+          padding-right: 15px;
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -12px;
+            transform: translateY(-50%);
+            height: 20px;
+            width: 2px;
+            background-color: #fefff3;
+          }
+        }
+      }
+    }
+  }
+  &__list {
+    width: 100%;
+    ul {
+      padding: 0;
+      li {
+        font-size: 1.4rem;
+        padding: 13px 15px;
+        color: #aa9e96;
+        cursor: pointer;
+        border-bottom: 1px dotted #bfbfc1;
+        &:nth-of-type(2),
+        &:nth-of-type(3),
+        &:nth-of-type(4),
+        &:nth-of-type(5),
+        &:nth-of-type(6) {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}

@@ -11,12 +11,23 @@ import {
   faSearch,
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { showMenu } from '../../store/menuMobile'
+
 
 function MenuMobile(props) {
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.menuBar);
+  console.log(data)
+  const handleMenu = () => {
+    let action = showMenu();
+    dispatch(action);
+  }
+
   return (
     <div className='Menu'>
       <div className='Menu__top'>
-        <img src={iconMenu} alt='iconMenu' className='Menu__top-icon' />
+        <img src={iconMenu} alt='iconMenu' className='Menu__top-icon' onClick={handleMenu} />
         <img src={logo} alt='logo' className='Menu__top-logo' />
         <span className='Menu__top-cart'>
           <img src={vi} alt='vn' className='icon-joint' />
