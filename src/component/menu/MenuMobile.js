@@ -12,6 +12,7 @@ import logo from '../../assets/image/logo.png';
 import vi from '../../assets/image/vi.png';
 import { showMenu } from '../../store/menuMobile';
 import iconMenu from './../../assets/image/icon-menu.svg';
+import hot from '../../assets/image/bg_hot.png';
 import './MenuMobile.scss';
 
 function MenuMobile(props) {
@@ -70,7 +71,7 @@ function MenuMobile(props) {
           <ul>
             <li>
               <a herf='#' className='hoverLink'>
-                Về BIT'S
+                Về BITI'S
               </a>
             </li>
             <li>
@@ -90,6 +91,7 @@ function MenuMobile(props) {
             </li>
             <li>
               <a herf='#'>TUYỂN DỤNG</a>
+              <img src={hot} alt='hot' />
             </li>
           </ul>
         </div>

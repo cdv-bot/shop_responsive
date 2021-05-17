@@ -12,6 +12,7 @@ import MenuGosto from '../menuMobile.js/MenuGosto';
 import MenuGirl from '../menuMobile.js/MenuGirl';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
+
 function MenuBar(props) {
   const [selectItem, setSelectItem] = useState(null);
   const data = useSelector((state) => state.menuBar);

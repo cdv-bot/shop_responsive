@@ -1,0 +1,67 @@
+@use 'src/style/reponsive' as repon;
+@mixin center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.SideBar {
+  @include center();
+  display: none;
+  @include repon.tablet {
+    display: flex;
+  }
+  background: rgb(29, 2, 2);
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    width: 1020px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    @include repon.tablet {
+      width: 1200px;
+    }
+    li {
+      flex: 1 1 auto;
+      cursor: pointer;
+
+      color: white;
+      font-size: 1.2rem;
+      @include center();
+      padding: 5px;
+      &:hover:not(&:nth-of-type(5), &:nth-of-type(7), &:nth-of-type(6)) {
+        background-color: white;
+        color: black;
+      }
+      &:nth-of-type(6) {
+        display: flex;
+        padding: 0;
+        position: relative;
+        &::after {
+          position: absolute;
+          content: '';
+          height: 20px;
+          border: 1px solid white;
+          left: 55%;
+          right: 50%;
+          transform: translateX(-50%);
+        }
+        .linkSide {
+          flex: 1 1 auto;
+          height: 100%;
+          text-decoration: none;
+          @include center();
+          color: white;
+          &:hover {
+            background: white;
+            color: black;
+          }
+          &:first-child {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
