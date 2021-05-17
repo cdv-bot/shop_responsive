@@ -3,11 +3,11 @@ import './style.scss';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function MenuNam(props) {
+function MenuNam({ handlerChangeRemote }) {
   return (
     <>
-      <ul>
-        <li>
+      <ul className='uls'>
+        <li onClick={handlerChangeRemote}>
           <FontAwesomeIcon icon={faChevronLeft} />
           <span>NAM</span>
         </li>

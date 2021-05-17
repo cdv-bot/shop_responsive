@@ -3,11 +3,11 @@ import './style.scss';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function MenuGosto(props) {
+function MenuGirl({ handlerChangeRemote }) {
   return (
     <>
-      <ul>
-        <li>
+      <ul className='uls'>
+        <li onClick={handlerChangeRemote}>
           <FontAwesomeIcon icon={faChevronLeft} />
           <span>BÉ GÁI</span>
         </li>
@@ -21,4 +21,4 @@ function MenuGosto(props) {
   );
 }
 
-export default MenuGosto;
+export default MenuGirl;

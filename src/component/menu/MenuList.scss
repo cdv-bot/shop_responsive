@@ -1,0 +1,19 @@
+#ul_menuList {
+  list-style: none;
+  padding: 0;
+  li {
+    font-size: 1.4rem;
+    padding: 13px 15px;
+    color: #aa9e96;
+    cursor: pointer;
+    border-bottom: 1px dotted #bfbfc1;
+    &:nth-of-type(2),
+    &:nth-of-type(3),
+    &:nth-of-type(4),
+    &:nth-of-type(5),
+    &:nth-of-type(6) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
