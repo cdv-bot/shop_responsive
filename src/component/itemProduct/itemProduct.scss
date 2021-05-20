@@ -1,0 +1,37 @@
+#itemProduct {
+  position: relative;
+  border: 1px solid #e8e8e8;
+  padding: 8px;
+  padding-bottom: 20px;
+  &:hover {
+    box-shadow: 0px 0px 15px 1px #eee;
+  }
+  .link_img {
+    display: inline-block;
+    // width: 100%;
+    // height: 100%;
+    margin-bottom: 5px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .linkName {
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: rgb(22, 18, 18);
+    &:hover {
+      color: rgb(202, 76, 76);
+    }
+  }
+  .price {
+    margin: 5px 0;
+    font-size: 1.6rem;
+    color: rgb(124, 39, 39);
+  }
+  .news {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+}

@@ -5,6 +5,7 @@
   padding: 10px 10px;
   padding-bottom: 10px;
   background: wheat;
+
   @include repon.tablet {
     display: flex;
     align-items: flex-start;
@@ -214,6 +215,7 @@
 }
 .scroll_fixed {
   position: fixed;
+  z-index: 100;
   top: 0;
   width: 100%;
   animation: slowDropDown 0.8s;
