@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'slick-carousel/slick/slick-theme.scss';
 import 'slick-carousel/slick/slick.scss';
 import './App.scss';
+import FooterInfo from './component/footer/FooterInfo';
+import FooterTag from './component/footer/FooterTag';
+import MailSign from './component/mailSign/MailSign';
 import MapStore from './component/mapStore/MapStore';
 import MenuBar from './component/menu/MenuBar';
 import MenuMobile from './component/menu/MenuMobile';
@@ -25,6 +28,9 @@ function App() {
         <MenuMobile />
         <Home />
         <MapStore />
+        <FooterTag />
+        <MailSign />
+        <FooterInfo />
       </div>
 
       {data ? <div className='close_menu' onClick={handlerCloseMenu}></div> : null}

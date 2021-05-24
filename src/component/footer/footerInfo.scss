@@ -1,0 +1,66 @@
+@use 'src/style/reponsive' as repon;
+
+#Footer_info {
+  background-color: #eee;
+  padding: 20px 0;
+  .infomation_border {
+    padding: 0 10px;
+    border-top: 1px solid #e4e4e4;
+    @include repon.tablet {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 2fr;
+    }
+    @include repon.desktop {
+      width: 1200px;
+      margin: auto;
+    }
+    .itemInfo {
+      .title {
+        display: flex;
+        justify-content: space-between;
+        @include repon.tablet {
+          display: none;
+        }
+        span {
+          font-weight: bold;
+          font-size: 1.4rem;
+        }
+      }
+      ul {
+        overflow: hidden;
+        padding: 0;
+        height: 0;
+        transition: all 0.5s;
+        @include repon.tablet {
+          margin-top: 10px;
+          height: 100%;
+        }
+        li {
+          list-style: none;
+          padding: 10px 0;
+          &:first-child {
+            @include repon.tablet {
+              font-weight: bold;
+              font-size: 1.6rem;
+            }
+          }
+          @include repon.tablet {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+    .infomation_text {
+      .img_infomation {
+        width: 90px;
+      }
+      p {
+        font-size: 1.6em;
+      }
+    }
+  }
+}
+.showList {
+  height: 190px !important;
+  transition: all 0.6s;
+}

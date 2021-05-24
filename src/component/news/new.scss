@@ -38,6 +38,43 @@
       display: grid;
       grid-template-columns: 2fr 3fr;
       grid-column-gap: 5px;
+      .hover {
+        &:hover {
+          .hover_background {
+            transform: translateY(0);
+            transition: all 0.7s;
+          }
+        }
+        position: relative;
+        overflow-y: hidden;
+        .hover_background {
+          transform: translateY(100%);
+          transition: all 0.7s;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          background-color: rgba(219, 189, 189, 0.6);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          .logo_inter {
+            width: 20px;
+            margin-right: 10px;
+          }
+          .icon_logo {
+            font-size: 1.6rem;
+          }
+          .share_text {
+            color: white;
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: lighter;
+          }
+        }
+      }
       .img_item_new {
         width: 100%;
       }

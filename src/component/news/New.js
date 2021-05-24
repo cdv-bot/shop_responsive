@@ -2,9 +2,17 @@ import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import slider_new from '../../assets/image/slider_new.jpg';
 import slider_new1 from '../../assets/image/slider1.jpg';
+import twitter from '../../assets/image/twitter.svg';
+import facebook from '../../assets/image/facebook.svg';
+import pinterest from '../../assets/image/pinterest.svg';
+import googlePlus from '../../assets/image/googlePlus.svg';
 import './new.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronLeft,
+  faChevronRight,
+  faPlusCircle,
+} from '@fortawesome/free-solid-svg-icons';
 
 function New(props) {
   const slider = useRef();
@@ -45,7 +53,21 @@ function New(props) {
         </div>
         <div className='new_sale'>
           <div className='item_new'>
-            <img src={slider_new} alt='new1' className='img_item_new' />
+            <div className='hover'>
+              <img src={slider_new} alt='new1' className='img_item_new' />
+              <div className='hover_background'>
+                <span>
+                  <FontAwesomeIcon icon={faPlusCircle} className='icon_logo' />
+                </span>
+                <p className='share_text'>Share now</p>
+                <span>
+                  <img src={twitter} alt='twitter' className='logo_inter' />
+                  <img src={facebook} alt='facebook' className='logo_inter' />
+                  <img src={pinterest} alt='pinterest' className='logo_inter' />
+                  <img src={googlePlus} alt='googlePlus' className='logo_inter' />
+                </span>
+              </div>
+            </div>
             <div className='text_new'>
               <p>SĂN BITI’S – TRÚNG VINFAST 10/12/2020 - 10/01/2021</p>
               <p>
