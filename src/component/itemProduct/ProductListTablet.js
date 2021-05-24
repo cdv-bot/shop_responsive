@@ -1,26 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Slider from 'react-slick';
-import './productListTablet.scss';
-import ItemProductTablet from '../itemProductTable';
-import a from '../../assets/image/tableProduct/banner1.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import nexts from '../../assets/image/nextSlider.png';
+import ItemProductTablet from './ItemProductTablet';
+import './productListTablet.scss';
 
 function ProductListTablet(props) {
   const slider = useRef();
-
-  const [checkPoint, setCheckPoint] = useState(4);
-  useEffect(() => {
-    window.onresize = () => {
-      let width = window.innerWidth;
-      if (width === 1024) {
-        setCheckPoint(4);
-      } else if (width === 1200) {
-        setCheckPoint(5);
-      }
-    };
-  }, []);
 
   const previous = () => {
     slider.current.slickPrev();
@@ -32,7 +17,7 @@ function ProductListTablet(props) {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: checkPoint,
+    slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
     responsive: [

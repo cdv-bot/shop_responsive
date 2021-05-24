@@ -1,8 +1,13 @@
+@use 'src/style/reponsive' as repon;
 .ChangeFree {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   padding: 0 10px;
+  @include repon.desktop {
+    width: 1200px;
+    margin: auto;
+  }
   .iconChevron {
     font-size: 3rem;
   }

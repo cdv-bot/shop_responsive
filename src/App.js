@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'slick-carousel/slick/slick-theme.scss';
 import 'slick-carousel/slick/slick.scss';
 import './App.scss';
+import MapStore from './component/mapStore/MapStore';
 import MenuBar from './component/menu/MenuBar';
 import MenuMobile from './component/menu/MenuMobile';
 import SideBar from './component/sideBar/SideBar';
@@ -23,7 +24,9 @@ function App() {
       <div className={classNames('start_main', { tranform_Main: data })}>
         <MenuMobile />
         <Home />
+        <MapStore />
       </div>
+
       {data ? <div className='close_menu' onClick={handlerCloseMenu}></div> : null}
     </div>
   );

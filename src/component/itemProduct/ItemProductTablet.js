@@ -26,7 +26,7 @@ function ItemProductTablet(props) {
       <a href='/#' className='buyProduct'>
         Mua hàng
       </a>
-      <img src={news} className='news' />
+      <img src={news} className='news' alt='' />
     </div>
   );
 }

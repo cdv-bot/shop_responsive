@@ -1,0 +1,52 @@
+@use 'src/style/reponsive' as repon;
+
+.productListMobile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  @include repon.tablet {
+    display: none;
+  }
+}
+.productList {
+  padding: 0 10px;
+  @include repon.desktop {
+    width: 1200px;
+    margin: auto;
+  }
+  .centerName {
+    padding: 5px 0;
+    .Name {
+      margin: auto;
+      background: #034ea1;
+      color: white;
+      font-size: 1.9rem;
+      text-align: center;
+      padding: 10px 0;
+      @include repon.tablet {
+        width: 350px;
+      }
+    }
+  }
+
+  .productListTablet {
+    display: none;
+    @include repon.tablet {
+      display: block;
+    }
+  }
+  .linkPlus {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    color: black;
+    font-weight: bold;
+    &:hover {
+      color: red;
+    }
+  }
+}

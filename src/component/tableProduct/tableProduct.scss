@@ -8,6 +8,10 @@
   @include repon.tablet {
     // grid-template-rows: 310px;
   }
+  @include repon.desktop {
+    margin: auto;
+    width: 1200px;
+  }
   .banner_left {
     height: 100%;
     width: 100%;

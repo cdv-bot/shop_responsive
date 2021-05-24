@@ -1,0 +1,12 @@
+@use 'src/style/reponsive' as repon;
+.div_img {
+  padding: 10px;
+  @include repon.desktop {
+    width: 1200px;
+    margin: auto;
+  }
+  .img_banner {
+    background: #034ea1;
+    width: 100%;
+  }
+}
