@@ -1,0 +1,47 @@
+.fix_scroll {
+  position: fixed;
+  bottom: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.icon_scroll {
+  font-size: 2.3rem;
+  color: white;
+}
+.icon_top {
+  right: 0;
+  margin-right: 20px;
+  background-color: red;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .icon_chevr {
+    margin-top: -3px;
+    padding: 0;
+  }
+}
+.icon_noti {
+  left: 0;
+  bottom: 50px;
+  margin-left: 20px;
+  background-color: red;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  .icon_bell {
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: 2px;
+  }
+}
+.hide_scroll {
+  bottom: -100%;
+  transition: all 0.5s;
+}

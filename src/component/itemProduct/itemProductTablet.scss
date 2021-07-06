@@ -1,0 +1,104 @@
+@use 'src/style/reponsive' as repon;
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#ItemProductTablet {
+  margin: 0 2px;
+  position: relative;
+  border: 1px solid #e8e8e8;
+  padding: 8px;
+  padding-bottom: 20px;
+
+  &:hover {
+    box-shadow: 0px 0px 15px 1px #eee;
+  }
+  .link_img {
+    display: inline-block;
+    margin-bottom: 5px;
+    &:active {
+      border: none;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .linkName {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: rgb(22, 18, 18);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &:hover {
+      color: rgb(202, 76, 76);
+    }
+  }
+  .price {
+    margin: 5px 0;
+    font-size: 1.6rem;
+    color: rgb(124, 39, 39);
+  }
+  .news {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  &:hover {
+    .plusSize {
+      display: none;
+    }
+    .onSize > .listSize {
+      display: flex;
+    }
+    .buyProduct {
+      visibility: visible;
+    }
+  }
+  .buyProduct {
+    visibility: hidden;
+    background: red;
+    display: block;
+    text-decoration: none;
+    @include center();
+    padding: 10px;
+    font-size: 1.6rem;
+    color: white;
+    margin-top: 10px;
+  }
+  .onSize {
+    position: relative;
+    height: 80px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    .plusSize {
+      font-size: 1.4rem;
+    }
+    .listSize {
+      display: none;
+      flex-wrap: wrap;
+      position: absolute;
+      top: 0;
+      span {
+        display: inline-block;
+        padding: 5px;
+        // background: red;
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+        font-size: 1.5rem;
+
+        @include center();
+
+        &:hover {
+          border: 1px solid black;
+        }
+      }
+    }
+  }
+}

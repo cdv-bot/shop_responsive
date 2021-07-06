@@ -1,0 +1,80 @@
+.MenuBar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 10;
+  width: 320px;
+  background-color: #eee;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  img {
+    width: 50px;
+    height: 50px;
+  }
+  &__login {
+    background-color: #f72b3f;
+    width: 100%;
+    margin-top: 10px;
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 10px;
+      list-style: none;
+      li {
+        &:nth-of-type(2),
+        &:nth-of-type(3) {
+          font-size: 1.7rem;
+          font-weight: bold;
+          color: #fefff3;
+        }
+        &:nth-of-type(3) {
+          position: relative;
+          padding-right: 15px;
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -12px;
+            transform: translateY(-50%);
+            height: 20px;
+            width: 2px;
+            background-color: #fefff3;
+          }
+        }
+      }
+    }
+  }
+  &__list {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    .positon {
+      position: absolute;
+      z-index: 10;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      transform: translateX(100%);
+      transition: all 0.6s;
+    }
+  }
+}
+
+.tranform_left {
+  transition: all 0.6s;
+  transform: translateX(-100%) !important;
+}
+.tranform {
+  transform: translateX(0) !important;
+}
+.positonHome {
+  transform: translateX(0);
+  transition: all 0.6s;
+}

@@ -1,0 +1,31 @@
+.sliderListTable {
+  padding: 0 20px;
+
+  position: relative;
+
+  .sliderClick {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
+  .previous {
+    left: -3px;
+  }
+  .next {
+    right: -3px;
+  }
+
+  .iconPrevious,
+  .iconNext {
+    width: 20px;
+    cursor: pointer;
+  }
+  .iconPrevious {
+    transform: rotate(180deg);
+  }
+  .slick-dots {
+    display: none !important;
+  }
+}

@@ -1,0 +1,21 @@
+.uls {
+  list-style: none;
+  padding: 0;
+
+  li {
+    font-size: 1.4rem;
+    padding: 13px 15px;
+    color: #aa9e96;
+    cursor: pointer;
+    border-bottom: 1px dotted #bfbfc1;
+    &:nth-of-type(1) {
+      span {
+        margin-left: 10px;
+      }
+    }
+    &:nth-of-type(2) {
+      color: #333368;
+      font-weight: bold;
+    }
+  }
+}
