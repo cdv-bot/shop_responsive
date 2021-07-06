@@ -1,8 +1,11 @@
 import React from 'react';
+import useSWR from 'swr';
 import ItemProduct from '../itemProduct/ItemProduct';
 import ProductListTablet from '../itemProduct/ProductListTablet';
 import './productList.scss';
-function ProductList({ name }) {
+function ProductList({ name, apiQuery }) {
+  const { data } = useSWR(`http://localhost:3001/${apiQuery}`);
+
   return (
     <div className='productList'>
       <div className='centerName'>
@@ -10,11 +13,11 @@ function ProductList({ name }) {
       </div>
 
       <div className='productListMobile'>
-        <ItemProduct />
+        <ItemProduct data={data} />
       </div>
 
       <div className='productListTablet'>
-        <ProductListTablet />
+        <ProductListTablet data={data} />
       </div>
 
       <a href='/#' className='linkPlus'>

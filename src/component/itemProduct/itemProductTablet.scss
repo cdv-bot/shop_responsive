@@ -17,15 +17,23 @@
   .link_img {
     display: inline-block;
     margin-bottom: 5px;
+    &:active {
+      border: none;
+    }
     img {
       width: 100%;
       height: 100%;
     }
   }
   .linkName {
+    display: inline-block;
+    width: 100%;
     text-decoration: none;
     font-size: 1.6rem;
     color: rgb(22, 18, 18);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     &:hover {
       color: rgb(202, 76, 76);
     }
@@ -65,9 +73,12 @@
   }
   .onSize {
     position: relative;
-    height: 50px;
+    height: 80px;
     border-bottom: 1px solid #eee;
     margin-bottom: 10px;
+    .plusSize {
+      font-size: 1.4rem;
+    }
     .listSize {
       display: none;
       flex-wrap: wrap;

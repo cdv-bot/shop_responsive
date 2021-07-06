@@ -1,30 +1,25 @@
 import React from 'react';
 import news from '../../assets/image/new.png';
-import itemProduct from '../../assets/image/tableProduct/itemProduct.jpg';
 import './itemProduct.scss';
-function ItemProduct(props) {
+
+function ItemProduct({ data }) {
   return (
     <>
-      <div id='itemProduct'>
-        <a href='/#' className='link_img'>
-          <img src={itemProduct} alt='item' />
-        </a>
-        <a className='linkName' href='/#'>
-          Giày Thể Thao Nam Bitis Hunter Nameless Edition
-        </a>
-        <p className='price'>1,499,000 đ</p>
-        <img src={news} className='news' alt='' />
-      </div>
-      <div id='itemProduct'>
-        <a href='/#' className='link_img'>
-          <img src={itemProduct} alt='item' />
-        </a>
-        <a className='linkName' href='/#'>
-          Giày Thể Thao Nam Bitis Hunter Nameless Edition
-        </a>
-        <p className='price'>1,499,000 đ</p>
-        <img src={news} className='news' alt='' />
-      </div>
+      {data &&
+        data.map((x, index) => {
+          return (
+            <div id='itemProduct' key={index}>
+              <a href='/#' className='link_img'>
+                <img src={x.img} alt='item' />
+              </a>
+              <a className='linkName' href='/#' title={x.title}>
+                {x.title}
+              </a>
+              <p className='price'>{`${x.price}`}</p>
+              <img src={news} className='news' alt='' />
+            </div>
+          );
+        })}
     </>
   );
 }

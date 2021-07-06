@@ -15,17 +15,22 @@ function Home(props) {
       <Slider />
       <ChangeFree />
       <TableProduct />
-      <ProductList name='NAM' />
-      <ProductList name='NỮ' />
-      <ProductList name='PHỤ KIỆN' />
+
+      <ProductList name='NAM' apiQuery='productSlideNam' />
+      <ProductList name='NỮ' apiQuery='productSlideNu' />
+      <ProductList name='PHỤ KIỆN' apiQuery='productSlideAccessories' />
+
       <div className='div_img'>
         <img src={banner_betrai} alt='banner' className='img_banner' />
       </div>
-      <ProductList name='BÉ TRAI' />
+
+      <ProductList name='BÉ TRAI' apiQuery='productSlideBoy' />
+
       <div className='div_img'>
         <img src={banner_begai} alt='banner' className='img_banner' />
       </div>
-      <ProductList name='BÉ GÁI' />
+
+      <ProductList name='BÉ GÁI' apiQuery='productSlideGirl' />
       <New />
     </div>
   );

@@ -1,28 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import news from '../../assets/image/new.png';
-import itemProduct from '../../assets/image/tableProduct/itemProduct.jpg';
+import { removeAccents } from '../../utils/common';
 import './itemProductTablet.scss';
-function ItemProductTablet(props) {
+function ItemProductTablet({ img, numberSize, title, price, maSp }) {
+  const listSize = numberSize.slice(1, -1);
+
   return (
     <div id='ItemProductTablet'>
-      <a href='/#' className='link_img'>
-        <img src={itemProduct} alt='item' />
-      </a>
+      <Link
+        to={{
+          pathname: `/product/${removeAccents(title)}`,
+          query: { thing: 'asdf', another1: 'stuff' },
+        }}
+        className='link_img'>
+        <img src={img} alt='item' />
+      </Link>
       <div className='onSize'>
-        <span className='plusSize'>+5 size</span>
+        <span className='plusSize'>{`+${listSize.length} size`}</span>
         <div className='listSize'>
-          <span>35</span>
-          <span>35</span>
-          <span>35</span>
-          <span>35</span>
-          <span>35</span>
-          <span>35</span>
+          {listSize.map((x, index) => {
+            return <span key={index}>{x}</span>;
+          })}
         </div>
       </div>
-      <a className='linkName' href='/#'>
-        Giày Thể Thao Nam Bitis Hunter Nameless Edition
+      <a className='linkName' href='/#' title={title}>
+        {title}
       </a>
-      <p className='price'>1,499,000 đ</p>
+      <p>{maSp}</p>
+      <p className='price'>{price}</p>
       <a href='/#' className='buyProduct'>
         Mua hàng
       </a>
