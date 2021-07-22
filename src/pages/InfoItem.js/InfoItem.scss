@@ -10,6 +10,9 @@
     grid-template-columns: 1fr;
     width: 400px;
   }
+  @include respon.tablet{
+    width: 950px;
+  }
   margin-top: 10px;
   &_img {
     .slider_img {
@@ -164,7 +167,7 @@
         align-items: center;
       }
       button {
-        width: 250px;
+        width: 220px;
         height: 36px;
         cursor: pointer;
       }
