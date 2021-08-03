@@ -6,43 +6,41 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import hot from '../../assets/image/bg_hot.png';
 import logo from '../../assets/image/logo.png';
 import vi from '../../assets/image/vi.png';
+import { deleteProduct } from '../../store/cart';
 import { showMenu } from '../../store/menuMobile';
+import { formatMoney, formatMoneyPoint } from '../../utils/common';
 import iconMenu from './../../assets/image/icon-menu.svg';
-import hot from '../../assets/image/bg_hot.png';
 import './MenuMobile.scss';
 
-function MenuMobile(props) {
-  const [scrollFix, setScrollFix] = useState(false);
+function MenuMobile({ scrollFix }) {
+  const data = useSelector((state) => state.cart);
   const [menuHeight, setMenuHeight] = useState(false);
-
   const dispatch = useDispatch();
   const menuData = useSelector((state) => state.menuBar);
   const handleMenu = () => {
     let action = showMenu();
     dispatch(action);
   };
+  const countCart = () => {
+    return data.reduce((x, y) => {
+      return x + y.count;
+    }, 0);
+  };
+  const totalMoneys = () => {
+    return data.reduce((x, y) => {
+      return x + formatMoney(y.price) * y.count;
+    }, 0);
+  };
 
-  useEffect(() => {
-    let viewport = window.innerWidth;
-    window.onscroll = () => {
-      if (window.pageYOffset > 130) {
-        setScrollFix(true);
-        if (viewport === 1024) {
-          setMenuHeight(true);
-        }
-      }
-      if (window.pageYOffset < 20) {
-        setScrollFix(false);
-        if (viewport === 1024) {
-          setMenuHeight(false);
-        }
-      }
-    };
-  }, []);
+  const handleDelete = (id, size) => {
+    dispatch(deleteProduct({ id, size }));
+  };
 
   return (
     <div
@@ -98,12 +96,65 @@ function MenuMobile(props) {
         <span className='Menu__top-cart'>
           <img src={vi} alt='vn' className='icon-joint vn' />
           <FontAwesomeIcon icon={faHeart} className='icon-joint' />
-          <FontAwesomeIcon
-            icon={faShoppingCart}
-            className='icon-joint'
-            style={{ fontSize: '2.4rem' }}
-          />
-          <span className='numberBuy'>12</span>
+          <div className='hoverCart'>
+            <FontAwesomeIcon
+              icon={faShoppingCart}
+              className='icon-joint'
+              style={{ fontSize: '2.4rem' }}
+            />
+            <div className='cart_list'>
+              <ul>
+                {data &&
+                  data.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        <img src={item.img} alt={item.title} />
+                        <div className='cart_title'>
+                          <p>
+                            <Link
+                              to={{
+                                pathname: `/product/${item._id}`,
+                              }}
+                              className='link_style'>
+                              {item.title}
+                            </Link>
+                          </p>
+                          <p>
+                            {item?.numberSize[0]}, {item?.numSize}
+                          </p>
+                          <div className='size_price'>
+                            <span> {item.count} </span>
+                            <span>{item.price}</span>
+                          </div>
+                        </div>
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className='icon_product_delete'
+                          onClick={() => handleDelete(item.id, item.numSize)}
+                        />
+                      </li>
+                    );
+                  })}
+              </ul>
+              <div className='total_money'>
+                <div className='money'>
+                  <span>Tổng tiền:</span>
+                  <span>{formatMoneyPoint(totalMoneys()) || 0} đ</span>
+                </div>
+                <div className='bt_cart'>
+                  <button>
+                    <Link style={{ color: 'white' }} to='/cart'>
+                      Xem giỏ hàng
+                    </Link>
+                  </button>
+                  <button>Thanh toán</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='cart'>
+            <span className='numberBuy'>{countCart()}</span>
+          </div>
         </span>
         <div className='Menu__top-search'>
           <input placeholder='Nhập thông tin cần tìm kiếm...' />

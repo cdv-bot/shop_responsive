@@ -1,0 +1,21 @@
+#empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .gh {
+    font-size: 2.6rem;
+  }
+  .empty_bt {
+    button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .link {
+      color: white;
+    }
+  }
+}

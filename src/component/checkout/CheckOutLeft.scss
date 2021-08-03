@@ -1,0 +1,19 @@
+#checkout {
+  .logo {
+    width: 70px;
+  }
+  .gh {
+    .icon_right {
+      margin: 0 8px;
+      color: rgb(221, 207, 207);
+    }
+  }
+  .cart_buy {
+    display: flex;
+    justify-content: space-between;
+    .cart_buy-icon {
+      margin-right: 10px;
+      color: rgb(197, 168, 168);
+    }
+  }
+}

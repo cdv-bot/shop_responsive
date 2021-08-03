@@ -1,0 +1,42 @@
+#check_right {
+  border-left: 1px solid #eee;
+  padding-left: 10px;
+
+  .info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    .img_right {
+      width: 64px;
+      height: 64px;
+    }
+    .title_span {
+      margin: 0 10px;
+      p {
+        margin: 0;
+        font-size: 1.3rem;
+      }
+    }
+  }
+  .match_money {
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+    p {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      color: rgb(158, 121, 121);
+      font-size: 1.6rem;
+    }
+  }
+  .total_money {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    span {
+      font-size: 2rem;
+    }
+  }
+}

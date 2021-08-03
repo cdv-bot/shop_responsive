@@ -54,6 +54,127 @@
     &-cart {
       position: relative;
       justify-self: end;
+
+      .cart {
+        position: relative;
+        &_list {
+          display: none;
+          flex-direction: column;
+          z-index: 100;
+          background-color: white;
+          position: absolute;
+          right: 10px;
+          top: 40px;
+          box-shadow: 1px 1px 10px 1px rgb(37, 36, 36);
+          width: 300px;
+          max-height: 470px;
+          .link_style {
+            text-decoration: none;
+            &:hover {
+              color: red;
+            }
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            right: 5px;
+            top: -7px;
+            z-index: -1;
+            transform: rotate(45deg);
+            background-color: rgb(255, 255, 255);
+          }
+
+          .total_money {
+            padding: 0 10px;
+            border-top: 1px solid rgb(41, 38, 38, 0.5);
+            padding-top: 10px;
+            .money {
+              display: flex;
+              justify-content: space-between;
+              span:nth-child(1) {
+                font-size: 1.8rem;
+                font-weight: bold;
+              }
+              span:nth-child(2) {
+                font-size: 1.7rem;
+                color: red;
+              }
+            }
+            .bt_cart {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 10px;
+              margin-top: 10px;
+              button {
+                width: 130px;
+                height: 40px;
+                border: none;
+                color: white;
+                cursor: pointer;
+                &:nth-child(1) {
+                  background-color: rgb(31, 29, 29);
+                }
+                &:nth-child(2) {
+                  background-color: rgb(168, 40, 40);
+                }
+              }
+            }
+          }
+          ul {
+            padding: 6px;
+            overflow-y: auto;
+          }
+          li {
+            display: flex;
+            list-style: none;
+            border-bottom: 1px dotted #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+
+            .icon_product_delete {
+              font-size: 1.4rem;
+              cursor: pointer;
+            }
+            &:last-child {
+              border: none;
+              margin-bottom: 0;
+            }
+            img {
+              width: 75px;
+              height: 75px;
+              margin-right: 10px;
+            }
+            .cart_title {
+              flex: 2;
+              p {
+                font-size: 1.3rem;
+                color: #696969;
+              }
+            }
+            p {
+              margin: 0;
+            }
+            .size_price {
+              display: flex;
+              align-items: center;
+              margin-top: 5px;
+              span {
+                font-size: 1.4rem;
+              }
+              span:nth-child(1) {
+                border: 1px solid;
+                padding: 4px;
+                margin-right: 10px;
+              }
+              span:nth-child(2) {
+                color: red;
+              }
+            }
+          }
+        }
+      }
       @include repon.tablet {
         margin-left: 10px;
       }
@@ -62,9 +183,13 @@
           display: none;
         }
       }
+      .hoverCart {
+        display: inline-block;
+      }
       .icon-joint {
         font-size: 2.7rem;
         margin-right: 10px;
+        cursor: pointer;
         &:nth-of-type(3) {
           margin-right: 0;
         }
@@ -74,7 +199,7 @@
         right: 0;
         width: 25px;
         height: 25px;
-        top: -11px;
+        top: -40px;
 
         display: flex;
         align-items: center;
@@ -105,6 +230,12 @@
         list-style: none;
         flex-wrap: wrap;
         li {
+          a {
+            color: black;
+          }
+          &:hover a {
+            color: white;
+          }
           height: 100%;
           padding: 0 25px;
 
@@ -112,9 +243,11 @@
           align-items: center;
           justify-content: center;
           font-size: 1.6rem;
+
           @include repon.desktop {
             padding: 0 20px;
           }
+
           &:nth-of-type(7) {
             position: relative;
             img {
@@ -130,6 +263,9 @@
             font-weight: bold;
             color: white;
             padding: 0;
+            a {
+              color: white;
+            }
             &:hover {
               .hoverLink {
                 background: transparent;
@@ -148,7 +284,7 @@
               z-index: 1;
               right: 0;
               &::before {
-                content: '';
+                content: "";
                 position: absolute;
                 z-index: -1;
                 left: 0;
@@ -236,5 +372,24 @@
   }
   to {
     left: 100%;
+  }
+}
+
+.hoverCart:hover {
+  &::before {
+    content: "";
+    position: absolute;
+
+    top: 25px;
+    right: 10px;
+    height: 20px;
+    left: 0;
+    right: 0;
+    &:hover .cart_list {
+      display: flex !important;
+    }
+  }
+  .cart_list {
+    display: flex !important;
   }
 }

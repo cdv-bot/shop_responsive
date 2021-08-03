@@ -39,7 +39,7 @@ function ProductListTablet({ data }) {
       <Slider {...settings} ref={slider}>
         {data &&
           data.map((x, index) => {
-            return <ItemProductTablet {...x} key={index} />;
+            return <ItemProductTablet dataItem={x} key={index} />;
           })}
       </Slider>
       <div>

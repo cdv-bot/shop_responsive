@@ -58,6 +58,7 @@
     }
     .buyProduct {
       visibility: visible;
+      cursor: pointer;
     }
   }
   .buyProduct {
@@ -84,6 +85,9 @@
       flex-wrap: wrap;
       position: absolute;
       top: 0;
+      .colorSize {
+        border: 1px solid black;
+      }
       span {
         display: inline-block;
         padding: 5px;
@@ -92,7 +96,8 @@
         height: 30px;
         margin-right: 5px;
         font-size: 1.5rem;
-
+        cursor: pointer;
+        margin-bottom: 5px;
         @include center();
 
         &:hover {

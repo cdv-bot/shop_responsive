@@ -1,8 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit'
-import menuMobile from '../store/menuMobile';
-
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import menuMobile from './menuMobile';
+import cart from './cart';
 export default configureStore({
   reducer: {
-    menuBar: menuMobile
+    menuBar: menuMobile,
+    cart,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });

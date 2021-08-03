@@ -10,7 +10,7 @@
     grid-template-columns: 1fr;
     width: 400px;
   }
-  @include respon.tablet{
+  @include respon.tablet {
     width: 950px;
   }
   margin-top: 10px;
@@ -139,12 +139,17 @@
         margin-right: 20px;
       }
       .list_size {
+        .colorSize {
+          background-color: black;
+          color: white;
+        }
         span {
           font-size: 1.3rem;
           display: inline-block;
           border: 1px solid black;
           padding: 8px;
           margin-left: 5px;
+          margin-bottom: 4px;
           cursor: pointer;
         }
       }

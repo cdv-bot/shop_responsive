@@ -1,7 +1,9 @@
-import { lazy } from 'react';
+import Cart from '../../pages/cart';
+import Checkout from '../../pages/checkout';
+
 import Home from '../../pages/home';
-import InfoItem from '../../pages/InfoItem.js';
-import NotFound from '../../pages/NotFound.js';
+import InfoItem from '../../pages/InfoItem';
+import NotFound from '../../pages/NotFound';
 const Page = [
   {
     path: '/',
@@ -12,6 +14,16 @@ const Page = [
     path: '/product/:slug',
     exact: true,
     main: InfoItem,
+  },
+  {
+    path: '/cart',
+    exact: true,
+    main: Cart,
+  },
+  {
+    path: '/checkout',
+    exact: true,
+    main: Checkout,
   },
   {
     path: '*',
