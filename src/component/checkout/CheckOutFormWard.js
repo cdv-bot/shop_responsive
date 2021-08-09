@@ -8,15 +8,15 @@ export function CheckOutFormWard({ district, province, formField }) {
     `http://localhost:3001/getWard/${province}/${district}`
   );
   useEffect(() => {
-    formField.resetFields(['ward']);
+    formField.resetFields(['wards']);
   }, [district, province]);
   return (
-    <Form.Item name='ward'>
+    <Form.Item name='wards'>
       <Select placeholder='Phường / xã' allowClear>
         {data &&
-          data.map((item) => {
+          data.map((item, index) => {
             return (
-              <Option key={item.phuongxa} value={item.phuongxa}>
+              <Option key={index} value={item.phuongxa}>
                 {item.ten}
               </Option>
             );

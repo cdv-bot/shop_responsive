@@ -17,12 +17,14 @@ import { showMenu } from '../../store/menuMobile';
 import { formatMoney, formatMoneyPoint } from '../../utils/common';
 import iconMenu from './../../assets/image/icon-menu.svg';
 import './MenuMobile.scss';
+import Search from './Search';
 
 function MenuMobile({ scrollFix }) {
   const data = useSelector((state) => state.cart);
   const [menuHeight, setMenuHeight] = useState(false);
   const dispatch = useDispatch();
   const menuData = useSelector((state) => state.menuBar);
+
   const handleMenu = () => {
     let action = showMenu();
     dispatch(action);
@@ -34,7 +36,7 @@ function MenuMobile({ scrollFix }) {
   };
   const totalMoneys = () => {
     return data.reduce((x, y) => {
-      return x + formatMoney(y.price) * y.count;
+      return x + y.price * y.count;
     }, 0);
   };
 
@@ -68,27 +70,27 @@ function MenuMobile({ scrollFix }) {
         <div className='Menu__top-tablet'>
           <ul>
             <li>
-              <a herf='#' className='hoverLink'>
+              <Link to='/' className='hoverLink'>
                 Về BITI'S
-              </a>
+              </Link>
             </li>
             <li>
-              <a herf='#'>NAM</a>
+              <Link to='/collections/nam'>NAM</Link>
             </li>
             <li>
-              <a herf='#'>NỮ</a>
+              <Link to='/collections/nu'>NỮ</Link>
             </li>
             <li>
-              <a herf='#'>GOSTO</a>
+              <Link to='/collections/phukien'>GOSTO</Link>
             </li>
             <li>
-              <a herf='#'>BÉ TRAI</a>
+              <Link to='/collections/boy'>BÉ TRAI</Link>
             </li>
             <li>
-              <a herf='#'>SALES</a>
+              <Link to='/collections/girl'>BÉ NỮ</Link>
             </li>
             <li>
-              <a herf='#'>TUYỂN DỤNG</a>
+              <Link to='/'>TUYỂN DỤNG</Link>
               <img src={hot} alt='hot' />
             </li>
           </ul>
@@ -124,7 +126,7 @@ function MenuMobile({ scrollFix }) {
                           </p>
                           <div className='size_price'>
                             <span> {item.count} </span>
-                            <span>{item.price}</span>
+                            <span>{formatMoneyPoint(item.price)} đ</span>
                           </div>
                         </div>
                         <FontAwesomeIcon
@@ -147,7 +149,11 @@ function MenuMobile({ scrollFix }) {
                       Xem giỏ hàng
                     </Link>
                   </button>
-                  <button>Thanh toán</button>
+                  <button>
+                    <Link style={{ color: 'white' }} to='/checkout'>
+                      Thanh toán
+                    </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -156,12 +162,8 @@ function MenuMobile({ scrollFix }) {
             <span className='numberBuy'>{countCart()}</span>
           </div>
         </span>
-        <div className='Menu__top-search'>
-          <input placeholder='Nhập thông tin cần tìm kiếm...' />
-          <span>
-            <FontAwesomeIcon icon={faSearch} className='faSearch' />
-          </span>
-        </div>
+
+        <Search />
       </div>
     </div>
   );

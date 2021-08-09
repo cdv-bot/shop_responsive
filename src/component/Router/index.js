@@ -1,8 +1,10 @@
 import Cart from '../../pages/cart';
 import Checkout from '../../pages/checkout';
+import Collections from '../../pages/collections.js';
 
 import Home from '../../pages/home';
 import InfoItem from '../../pages/InfoItem';
+import Login from '../../pages/Login/Login';
 import NotFound from '../../pages/NotFound';
 const Page = [
   {
@@ -24,6 +26,16 @@ const Page = [
     path: '/checkout',
     exact: true,
     main: Checkout,
+  },
+  {
+    path: '/collections/:name',
+    exact: true,
+    main: Collections,
+  },
+  {
+    path: '/login',
+    exact: true,
+    main: Login,
   },
   {
     path: '*',

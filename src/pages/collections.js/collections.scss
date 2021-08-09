@@ -1,0 +1,10 @@
+#collections {
+  width: 1200px;
+  margin: auto;
+  .list_product {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-column-gap: 10px;
+  }
+}

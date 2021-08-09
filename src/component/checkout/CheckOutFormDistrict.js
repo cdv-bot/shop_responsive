@@ -14,9 +14,9 @@ export function CheckOutFormDistrict({ province, formField }) {
     <Form.Item name='district'>
       <Select placeholder='Quận / huyện' allowClear>
         {data &&
-          data.map((item) => {
+          data.map((item, index) => {
             return (
-              <Option key={item.mahuyen} value={item.mahuyen}>
+              <Option key={index} value={item.mahuyen}>
                 {item.ten}
               </Option>
             );

@@ -12,6 +12,7 @@ export const fetchUserById = createAsyncThunk('users/fetchById', async (data) =>
   });
   return response;
 });
+
 export const deleteProduct = createAsyncThunk(
   'users/deleteProduct',
   async (data) => {
@@ -24,6 +25,14 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const editProduct = createAsyncThunk('users/edit', async (data) => {
+  const userId = window.localStorage.getItem('id_user');
+  const response = await api.editProduct({
+    userId,
+    data,
+  });
+  return response;
+});
 const cart = createSlice({
   name: 'cart',
   initialState: [],
@@ -31,20 +40,13 @@ const cart = createSlice({
     addProductApi: (state, actions) => {
       return actions.payload;
     },
-
-    editProduct: (state, actions) => {
-      const index = actions.payload.index;
-      state[index] = {
-        ...state[index],
-        count: actions.payload.count,
-      };
-    },
   },
   extraReducers: {
     [fetchUserById.fulfilled]: (state, action) => {
       notification.success({
         message: 'Đã thêm thành công.',
         description: '',
+        placement: 'topLeft',
       });
       return action.payload.dataItem;
     },
@@ -52,12 +54,16 @@ const cart = createSlice({
       notification.success({
         message: 'Đã xóa thành công.',
         description: '',
+        placement: 'topLeft',
       });
+      return action.payload.data;
+    },
+    [editProduct.fulfilled]: (state, action) => {
       return action.payload.data;
     },
   },
 });
 
 const { reducer, actions } = cart;
-export const { addProduct, editProduct, addProductApi } = actions;
+export const { addProductApi } = actions;
 export default reducer;

@@ -6,6 +6,7 @@ import news from '../../assets/image/new.png';
 import './itemProductTablet.scss';
 import { addProduct, addProductList, fetchUserById } from '../../store/cart';
 import { Button } from 'antd';
+import { formatMoneyPoint } from '../../utils/common';
 
 function ItemProductTablet({ dataItem }) {
   const { img, numberSize, title, price, maSp, _id } = dataItem;
@@ -15,7 +16,7 @@ function ItemProductTablet({ dataItem }) {
     id: null,
     numSize: null,
   });
-  const listSize = numberSize.slice(1, -1);
+  const listSize = numberSize ? numberSize.slice(1, -1) : [];
 
   const onSize = (size, id) => {
     setSizes({
@@ -65,10 +66,9 @@ function ItemProductTablet({ dataItem }) {
         {title}
       </a>
       <p>{maSp}</p>
-      <p className='price'>{price}</p>
+      <p className='price'>{formatMoneyPoint(price)} đ</p>
       <Button
         className='buyProduct'
-        // loading={true}
         style={{ width: '100%', height: '50px' }}
         onClick={() => handleBuy(_id)}>
         Mua hàng

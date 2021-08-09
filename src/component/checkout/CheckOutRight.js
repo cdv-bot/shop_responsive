@@ -1,34 +1,57 @@
 import { Input, Form, Row, Col, Button } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { formatMoney, formatMoneyPoint } from '../../utils/common';
 import './CheckOutRight.scss';
-export function CheckOutRight(props) {
+export function CheckOutRight({ money }) {
+  const data = useSelector((state) => state.cart);
+
+  const [discout, setDiscount] = useState(0);
+  const totalMoneys = () => {
+    return data.reduce((x, y) => {
+      return x + y.price * y.count;
+    }, 0);
+  };
+
+  const onFinish = (e) => {
+    if (e.discount && ['VIPSUPER'].includes(e.discount.trim().toUpperCase())) {
+      setDiscount((totalMoneys() / 100) * 20);
+      money(totalMoneys - (totalMoneys() / 100) * 20);
+    } else {
+      setDiscount(0);
+    }
+  };
+  useEffect(() => {
+    money(totalMoneys());
+  }, [data]);
   return (
     <div id='check_right'>
-      <div className='info'>
-        <img
-          className='img_right'
-          src='https://st.quantrimang.com/photos/image/2020/10/17/giai-nen-file-img.jpg'
-          alt=''
-        />
-        <span className='title_span'>
-          <p>
-            Hình ảnh Mô tả Số lượng Giá Giày Thể Thao Nam Biti's Hunter Core
-            Refreshing Collection Contras Black DSMH06700DEN (Đen)1 Giày Thể Thao Nam
-            Biti's Hunter Core Refreshing Collection Contras Black DSMH06700DEN (Đen)
-          </p>
-          <p>Đen / 42</p>
-        </span>
-        <span>231223</span>
-      </div>
-      <Form style={{ marginTop: '10px', borderBottom: '1px solid #eee' }}>
+      {data &&
+        data.map((item, index) => {
+          return (
+            <div className='info' key={index}>
+              <img className='img_right' src={item?.img} alt={item?.img} />
+              <span className='title_span'>
+                <p>{item?.title}</p>
+                <p>{`${item?.numberSize[0]} / ${item?.numSize}`}</p>
+              </span>
+              <span>{formatMoneyPoint(item?.price)} đ</span>
+            </div>
+          );
+        })}
+      <Form
+        style={{ marginTop: '10px', borderBottom: '1px solid #eee' }}
+        onFinish={onFinish}>
         <Row gutter={[8, 0]}>
           <Col span={15}>
-            <Form.Item>
-              <Input placeholder='Mã giảm giá' />
+            <Form.Item name='discount'>
+              <Input placeholder='Mã giảm giá' type='lowercase' />
             </Form.Item>
           </Col>
           <Col span={9} align='center'>
-            <Button type='submit'>Sử dụng</Button>
+            <Form.Item>
+              <Button htmlType='submit'>Sử dụng</Button>
+            </Form.Item>
           </Col>
         </Row>
         <p style={{ width: '400px', fontWeight: 'bold', color: 'red' }}>
@@ -39,7 +62,14 @@ export function CheckOutRight(props) {
       <div className='match_money'>
         <p>
           <span>Tạm tính:</span>
-          <span>123</span>
+          <span>{formatMoneyPoint(totalMoneys()) || 0} đ</span>
+        </p>
+        <p>
+          <span>Mã giảm giá:</span>
+          <span>
+            ({formatMoneyPoint(discout) ? '20%' : null}) -{' '}
+            {formatMoneyPoint(discout)}đ
+          </span>
         </p>
         <p>
           <span>Phí vận chuyển:</span>
@@ -48,7 +78,7 @@ export function CheckOutRight(props) {
       </div>
       <div className='total_money'>
         <span>Tổng cộng</span>
-        <span>6666.đ</span>
+        <span>{formatMoneyPoint(totalMoneys() - discout) || 0} đ</span>
       </div>
     </div>
   );

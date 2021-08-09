@@ -1,7 +1,7 @@
 import React from 'react';
 import './CheckOutLeft.scss';
 import logo from '../../assets/image/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Button, Col, Form, Input, Row } from 'antd';
@@ -11,11 +11,28 @@ import {
   CheckOutFormWard,
 } from '../checkout';
 
-export function CheckOutLeft(props) {
-  const [form] = Form.useForm();
+import { useDispatch, useSelector } from 'react-redux';
+import { orderApi } from '../../store/order';
 
+export function CheckOutLeft({ moneys }) {
+  const data = useSelector((state) => state.cart);
+  const [form] = Form.useForm();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const onFinish = (e) => {
-    console.log(e);
+    dispatch(
+      orderApi({
+        data: e,
+        product: data.map((item) => {
+          return {
+            title: item.title,
+            size: item.numSize,
+            count: item.count,
+          };
+        }),
+        money: moneys,
+      })
+    );
   };
   return (
     <div id='checkout'>
@@ -47,7 +64,13 @@ export function CheckOutLeft(props) {
             <Col span={15}>
               <Form.Item
                 name='email'
-                rules={[{ required: true, message: 'Vui lòng không để trống!' }]}>
+                rules={[
+                  {
+                    type: 'email',
+                    message: 'Vui lòng nhập email',
+                  },
+                  { required: true, message: 'Vui lòng không để trống!' },
+                ]}>
                 <Input placeholder='Email' />
               </Form.Item>
             </Col>
@@ -105,7 +128,7 @@ export function CheckOutLeft(props) {
               <Link to='/cart'>Giỏ hàng</Link>
             </div>
             <Button type='primary' htmlType='submit' style={{ height: '60px' }}>
-              Tiếp tục đến phương thúc thanh toán
+              Thanh toán
             </Button>
           </div>
         </Form>

@@ -10,7 +10,8 @@ import policyApi from '../../api/api';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../../store/cart';
+import { fetchUserById } from '../../store/cart';
+import { formatMoneyPoint } from '../../utils/common';
 function InfoItem(props) {
   const [data, setData] = useState([]);
   const { slug } = useParams();
@@ -30,11 +31,12 @@ function InfoItem(props) {
         window.scrollTo({ top: 0 });
       });
   }, [slug]);
+
   const handleBuy = () => {
     const arrSize = data?.numberSize.slice(1).length;
     if (size.numSize || arrSize === 0) {
       dispatch(
-        addProduct({
+        fetchUserById({
           id: data._id,
           numSize: arrSize ? size.numSize : 0,
           ...data,
@@ -81,7 +83,7 @@ function InfoItem(props) {
           <span>Mã sản phẩm:</span> <span>{data?.maSp}</span>
         </p>
         <div className='moeny_span'>
-          <span>{data?.price}</span>
+          <span>{formatMoneyPoint(data?.price)} đ</span>
           <span>*Đã bao gồm VAT</span>
         </div>
         <div className='content_color'>

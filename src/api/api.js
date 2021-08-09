@@ -20,6 +20,12 @@ const policyApi = {
   deleteProduct: (data) => {
     return axiosClient.post('http://localhost:3001/productlist/delete', data);
   },
+  editProduct: (data) => {
+    return axiosClient.post('http://localhost:3001/productlist/edit', data);
+  },
+  orderProduct: (data) => {
+    return axiosClient.post('http://localhost:3001/order', data);
+  },
 };
 
 export default policyApi;

@@ -25,6 +25,7 @@ axiosClient.interceptors.response.use(
       window.localStorage.removeItem('id_user');
       window.location.replace('http://localhost:3000/');
     }
+
     throw error;
   }
 );

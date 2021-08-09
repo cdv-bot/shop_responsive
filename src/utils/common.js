@@ -20,6 +20,7 @@ export const formatMoney = (value) => {
 
 export const formatMoneyPoint = (value) => {
   if (!value) return null;
+
   return value.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$&,');
 };
 

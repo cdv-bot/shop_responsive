@@ -8,10 +8,12 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 export function CartList(props) {
   const dataCart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
   const handleCount = (count, index) => {
     if (count > 0) {
       dispatch(
@@ -25,9 +27,10 @@ export function CartList(props) {
   const handlDelete = (id, size, title) => {
     dispatch(deleteProduct({ id, size }));
   };
+
   const totalMoney = () => {
     return dataCart.reduce((x, y) => {
-      return x + formatMoney(y?.price) * y?.count;
+      return x + y?.price * y?.count;
     }, 0);
   };
   return (
@@ -81,12 +84,10 @@ export function CartList(props) {
                     />
                   </li>
                   <li>
-                    <span>{item?.price}</span>
+                    <span>{formatMoneyPoint(item?.price)} đ</span>
                   </li>
                   <li>
-                    <span>
-                      {formatMoneyPoint(formatMoney(item?.price) * item?.count)} ₫
-                    </span>
+                    <span>{formatMoneyPoint(item?.price * item?.count)} ₫</span>
                   </li>
                 </ul>
               );
@@ -104,14 +105,16 @@ export function CartList(props) {
           </p>
           <div className='bt'>
             <button>
-              Thanh toán ngay
-              <br />
-              (áp dụng cho Việt Nam)
+              <Link to='/checkout' style={{ color: 'white' }}>
+                Thanh toán ngay
+                <br />
+                (áp dụng cho Việt Nam)
+              </Link>
             </button>
-            <button>
+            {/* <button>
               ĐẶT HÀNG QUỐC TẾ <br />
               (cho các quốc gia khác)
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
