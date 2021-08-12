@@ -8,6 +8,7 @@ import TableProduct from '../../component/tableProduct/TableProduct';
 import banner_betrai from '../../assets/image/banner-be-trai.jpg';
 import banner_begai from '../../assets/image/banner-be-gai.jpg';
 import New from '../../component/news/New';
+import MapStore from '../../component/mapStore/MapStore';
 
 function Home(props) {
   return (
@@ -32,6 +33,7 @@ function Home(props) {
 
       <ProductList name='BÉ GÁI' apiQuery='productSlideGirl' />
       <New />
+      <MapStore />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Admin from '../../pages/admin';
 import Cart from '../../pages/cart';
 import Checkout from '../../pages/checkout';
 import Collections from '../../pages/collections.js';
@@ -6,6 +7,7 @@ import Home from '../../pages/home';
 import InfoItem from '../../pages/InfoItem';
 import Login from '../../pages/Login/Login';
 import NotFound from '../../pages/NotFound';
+import Registration from '../../pages/registration/Registration';
 const Page = [
   {
     path: '/',
@@ -36,6 +38,16 @@ const Page = [
     path: '/login',
     exact: true,
     main: Login,
+  },
+  {
+    path: '/logup',
+    exact: true,
+    main: Registration,
+  },
+  {
+    path: '/admin',
+    exact: true,
+    main: Admin,
   },
   {
     path: '*',

@@ -1,0 +1,18 @@
+#login {
+  padding: 60px 0;
+  .loginBoder {
+    margin: auto;
+    width: 330px;
+    height: 430px;
+    box-shadow: 1px 1px 1px 2px #eee;
+    padding: 10px;
+    .input {
+      height: 50px;
+    }
+    &__link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+#admin {
+  width: 1200px;
+  margin: auto;
+  .list_product {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+    .money_count {
+      font-weight: bold;
+      font-size: 1.7rem;
+      margin-top: 10px;
+    }
+    .row_info {
+      margin-top: 10px;
+      font-size: 1.6rem;
+      .back_done {
+        cursor: pointer;
+      }
+    }
+  }
+}

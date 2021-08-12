@@ -1,11 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useSWR from 'swr';
 import ItemProduct from '../itemProduct/ItemProduct';
 import ProductListTablet from '../itemProduct/ProductListTablet';
 import './productList.scss';
 function ProductList({ name, apiQuery }) {
   const { data } = useSWR(`http://localhost:3001/${apiQuery}`);
-
+  const checkName = (value) => {
+    if (value === 'PHỤ KIỆN') {
+      return 'phukien';
+    }
+    if (value === 'NAM') {
+      return 'nam';
+    }
+    if (value === 'NỮ') {
+      return 'nu';
+    }
+    if (value === 'BÉ TRAI') {
+      return 'boy';
+    }
+    if (value === 'BÉ GÁI') {
+      return 'girl';
+    }
+  };
   return (
     <div className='productList'>
       <div className='centerName'>
@@ -20,9 +37,9 @@ function ProductList({ name, apiQuery }) {
         <ProductListTablet data={data} />
       </div>
 
-      <a href='/#' className='linkPlus'>
+      <Link to={`/collections/${checkName(name)}`} className='linkPlus'>
         XEM THÊM
-      </a>
+      </Link>
     </div>
   );
 }

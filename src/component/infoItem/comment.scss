@@ -1,0 +1,49 @@
+.comment {
+  ul {
+    margin: 0;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    li {
+      list-style: none;
+      word-wrap: break-word;
+      margin-top: 10px;
+      border-bottom: 1px double rgb(189, 162, 162);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      p {
+        margin: 0;
+        &:nth-child(1) {
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+        &:nth-child(2) {
+          font-size: 1.2rem;
+          margin-top: 5px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .input_cmt {
+  }
+}

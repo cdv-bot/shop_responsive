@@ -6,9 +6,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useHistory, useLocation } from 'react-router-dom';
 import hot from '../../assets/image/bg_hot.png';
 import logo from '../../assets/image/logo.png';
 import vi from '../../assets/image/vi.png';
@@ -23,6 +23,7 @@ function MenuMobile({ scrollFix }) {
   const data = useSelector((state) => state.cart);
   const [menuHeight, setMenuHeight] = useState(false);
   const dispatch = useDispatch();
+  const [action, setAction] = useState(null);
   const menuData = useSelector((state) => state.menuBar);
 
   const handleMenu = () => {
@@ -43,7 +44,10 @@ function MenuMobile({ scrollFix }) {
   const handleDelete = (id, size) => {
     dispatch(deleteProduct({ id, size }));
   };
-
+  const Location = useLocation();
+  useEffect(() => {
+    setAction(Location.pathname);
+  }, [Location]);
   return (
     <div
       className={classNames('Menu', { scroll_fixed: scrollFix })}
@@ -74,23 +78,44 @@ function MenuMobile({ scrollFix }) {
                 Về BITI'S
               </Link>
             </li>
-            <li>
-              <Link to='/collections/nam'>NAM</Link>
+            <li
+              className={classNames({ action_link: action === '/collections/nam' })}>
+              <NavLink exact to='/collections/nam'>
+                NAM
+              </NavLink>
+            </li>
+            <li
+              className={classNames({ action_link: action === '/collections/nu' })}>
+              <Link exact to='/collections/nu'>
+                NỮ
+              </Link>
+            </li>
+            <li
+              className={classNames({
+                action_link: action === '/collections/phukien',
+              })}>
+              <Link exact to='/collections/phukien'>
+                GOSTO
+              </Link>
+            </li>
+            <li
+              className={classNames({ action_link: action === '/collections/boy' })}>
+              <Link exact to='/collections/boy'>
+                BÉ TRAI
+              </Link>
+            </li>
+            <li
+              className={classNames({
+                action_link: action === '/collections/girl',
+              })}>
+              <Link exact to='/collections/girl'>
+                BÉ NỮ
+              </Link>
             </li>
             <li>
-              <Link to='/collections/nu'>NỮ</Link>
-            </li>
-            <li>
-              <Link to='/collections/phukien'>GOSTO</Link>
-            </li>
-            <li>
-              <Link to='/collections/boy'>BÉ TRAI</Link>
-            </li>
-            <li>
-              <Link to='/collections/girl'>BÉ NỮ</Link>
-            </li>
-            <li>
-              <Link to='/'>TUYỂN DỤNG</Link>
+              <Link exact to='/'>
+                TUYỂN DỤNG
+              </Link>
               <img src={hot} alt='hot' />
             </li>
           </ul>

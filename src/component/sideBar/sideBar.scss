@@ -38,15 +38,15 @@
         display: flex;
         padding: 0;
         position: relative;
-        &::after {
-          position: absolute;
-          content: "";
-          height: 20px;
-          border: 1px solid white;
-          left: 55%;
-          right: 50%;
-          transform: translateX(-50%);
-        }
+        // &::after {
+        //   position: absolute;
+        //   content: "";
+        //   height: 20px;
+        //   border: 1px solid white;
+        //   left: 55%;
+        //   right: 50%;
+        //   transform: translateX(-50%);
+        // }
         .linkSide {
           flex: 1 1 auto;
           height: 100%;

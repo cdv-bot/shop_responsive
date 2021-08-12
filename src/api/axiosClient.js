@@ -9,7 +9,11 @@ const axiosClient = axios.create({
   paramsSerializer: (params) => queryString.stringify(params),
 });
 axiosClient.interceptors.request.use(async (config) => {
-  // Handle token here ...
+  const token = window.localStorage.getItem('token');
+  if (token) {
+    // eslint-disable-next-line no-param-reassign
+    config.headers.common['token'] = `Bearer ${token}`;
+  }
   return config;
 });
 axiosClient.interceptors.response.use(
@@ -24,6 +28,10 @@ axiosClient.interceptors.response.use(
     if (error.request?.status === 401) {
       window.localStorage.removeItem('id_user');
       window.location.replace('http://localhost:3000/');
+    }
+
+    if (error.request?.status === 403) {
+      window.localStorage.removeItem('token');
     }
 
     throw error;

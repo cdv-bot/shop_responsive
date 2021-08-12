@@ -6,8 +6,8 @@ const menuMobile = createSlice({
   reducers: {
     showMenu: (state) => {
       return !state;
-    }
-  }
+    },
+  },
 });
 
 const { reducer, actions } = menuMobile;

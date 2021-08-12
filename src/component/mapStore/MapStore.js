@@ -11,7 +11,7 @@ function MapStore(props) {
         <img src={map} alt='map' className='img_map' />
         <div className='select'>
           <select name='cars' className='select_value'>
-            <option value='volvo'>Volvo</option>
+            <option value='all'>Tất cả</option>
             <option value='saab'>Saab</option>
             <option value='mercedes'>Mercedes</option>
             <option value='audi'>Audi</option>
@@ -20,7 +20,7 @@ function MapStore(props) {
             <div className='select_item'>
               <FontAwesomeIcon icon={faMapMarkedAlt} className='icon_map' />
               <span>
-                <p>CTASASA</p>
+                <p>CH BITI'S HUNTER- HỒ CHÍ MINH</p>
                 <p>Địa chỉ: 84 Điện Biên, Phường Lê Lợi, TP Hưng Yên, Hưng Yên</p>
                 <p>SĐT: 0221.6284.365</p>
               </span>
@@ -28,7 +28,7 @@ function MapStore(props) {
             <div className='select_item'>
               <FontAwesomeIcon icon={faMapMarkedAlt} className='icon_map' />
               <span>
-                <p>CTASASA</p>
+                <p>CH BITI'S HUNTER - NGUYỄN TRÃI</p>
                 <p>Địa chỉ: 84 Điện Biên, Phường Lê Lợi, TP Hưng Yên, Hưng Yên</p>
                 <p>SĐT: 0221.6284.365</p>
               </span>
@@ -36,15 +36,15 @@ function MapStore(props) {
             <div className='select_item'>
               <FontAwesomeIcon icon={faMapMarkedAlt} className='icon_map' />
               <span>
-                <p>CTASASA</p>
-                <p>Địa chỉ: 84 Điện Biên, Phường Lê Lợi, TP Hưng Yên, Hưng Yên</p>
+                <p>CHTT THÁP MƯỜI</p>
+                <p>Địa chỉ: 595 Thống Nhất, Phường Lê Lợi, TP Hưng Yên, Hưng Yên</p>
                 <p>SĐT: 0221.6284.365</p>
               </span>
             </div>
             <div className='select_item'>
               <FontAwesomeIcon icon={faMapMarkedAlt} className='icon_map' />
               <span>
-                <p>CTASASA</p>
+                <p>CHTT XÔ VIẾT NGHỆ TĨNH</p>
                 <p>Địa chỉ: 84 Điện Biên, Phường Lê Lợi, TP Hưng Yên, Hưng Yên</p>
                 <p>SĐT: 0221.6284.365</p>
               </span>

@@ -26,6 +26,27 @@ const policyApi = {
   orderProduct: (data) => {
     return axiosClient.post('http://localhost:3001/order', data);
   },
+  login: (data) => {
+    return axiosClient.post('http://localhost:3001/user/login', data);
+  },
+  checkToken: () => {
+    return axiosClient.post('http://localhost:3001/user/posttoken');
+  },
+  postComment: (data) => {
+    return axiosClient.post('http://localhost:3001/comment', data);
+  },
+  getComment: (data) => {
+    return axiosClient.get(`http://localhost:3001/comment/${data}`);
+  },
+  logup: (data) => {
+    return axiosClient.post(`http://localhost:3001/user/logup`, data);
+  },
+  getBuy: () => {
+    return axiosClient.get('http://localhost:3001/user/listbuyproduct');
+  },
+  getDoneBuy: (data) => {
+    return axiosClient.get(`http://localhost:3001/user/verybuy?id=${data}`);
+  },
 };
 
 export default policyApi;

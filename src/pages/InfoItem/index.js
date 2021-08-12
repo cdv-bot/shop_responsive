@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { fetchUserById } from '../../store/cart';
 import { formatMoneyPoint } from '../../utils/common';
+import Comment from '../../component/infoItem/Comment';
 function InfoItem(props) {
   const [data, setData] = useState([]);
   const { slug } = useParams();
@@ -72,9 +73,7 @@ function InfoItem(props) {
               <FontAwesomeIcon icon={faStar} className='icon_item' />
             </div>
           </div>
-          <div className='write_comment'>
-            <button>Viết đánh giá</button>
-          </div>
+          <Comment id={data?._id} />
         </div>
       </div>
       <div className='content'>

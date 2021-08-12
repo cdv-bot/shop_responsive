@@ -88,7 +88,6 @@ export default function RouterApp() {
       <div className={classNames('start_main', { tranform_Main: data })}>
         <MenuMobile scrollFix={scrollFix} />
         <Switch>{PageRouter(Page)}</Switch>
-        {location.pathname === '/login' || <MapStore />}
         <FooterTag />
         <MailSign />
         <FooterInfo />
