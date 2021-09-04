@@ -1,9 +1,9 @@
-import { Button, Col, Form, Input, notification, Row } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
+import jwtDecode from 'jwt-decode';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import policyApi from '../../api/api';
 import './comment.scss';
-import jwtDecode from 'jwt-decode';
-import { Link } from 'react-router-dom';
 const { TextArea } = Input;
 
 function Comment({ id }) {
@@ -11,36 +11,41 @@ function Comment({ id }) {
   const token = window.localStorage.getItem('token');
   const [dataCmt, setDataCmt] = useState([]);
   useEffect(() => {
-    policyApi.getComment(id).then((data) => {
+    (async () => {
+      const data = await policyApi.getComment(id);
+
       if (data?.comment) {
         setDataCmt(data.comment);
       }
-    });
+    })();
   }, [id]);
+
   const onFinish = (e) => {
     if (token) {
       const { userList } = jwtDecode(token);
-      policyApi
-        .postComment({
-          comment: e.comment,
-          idProduct: id,
-          username: userList.username,
-          name: userList.name,
-        })
-        .then((item) => {
-          setDataCmt([...dataCmt, item]);
-          notification.success({
-            message: 'Đã gửi thành công',
-            description: '',
+      if (userList) {
+        policyApi
+          .postComment({
+            comment: e.comment,
+            idProduct: id,
+            username: userList.username,
+            name: userList.name,
+          })
+          .then((item) => {
+            setDataCmt([...dataCmt, item]);
+            notification.success({
+              message: 'Đã gửi thành công',
+              description: '',
+            });
+            formField.resetFields();
+          })
+          .catch((error) => {
+            notification.error({
+              message: 'Lỗi sảy ra.',
+              description: 'Báo lại admin',
+            });
           });
-          formField.resetFields();
-        })
-        .catch((error) => {
-          notification.error({
-            message: 'Lỗi sảy ra.',
-            description: 'Báo lại admin',
-          });
-        });
+      }
     }
   };
   return (

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import './footerInfo.scss';
+import { useState } from 'react';
+import classNames from 'classnames';
 import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../assets/image/logo.png';
-import classNames from 'classnames';
+import './footerInfo.scss';
 
-function FooterInfo(props) {
+export function FooterInfo(props) {
   const [hasInfo, setHasInfo] = useState({
     help: false,
     infomation: false,
@@ -95,5 +95,3 @@ function FooterInfo(props) {
     </div>
   );
 }
-
-export default FooterInfo;

@@ -1,7 +1,7 @@
 import Admin from '../../pages/admin';
 import Cart from '../../pages/cart';
 import Checkout from '../../pages/checkout';
-import Collections from '../../pages/collections.js';
+import Collections from '../../pages/collections.js/index.js';
 
 import Home from '../../pages/home';
 import InfoItem from '../../pages/InfoItem';

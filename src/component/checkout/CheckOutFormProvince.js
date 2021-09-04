@@ -5,7 +5,7 @@ import useSWR from 'swr';
 const { Option } = Select;
 
 export function CheckOutFormProvince(props) {
-  const { data, error } = useSWR('http://localhost:3001/getProvince');
+  const { data } = useSWR(`${process.env.REACT_APP_API}/getProvince`);
 
   return (
     <Form.Item name='province'>

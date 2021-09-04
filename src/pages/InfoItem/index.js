@@ -17,11 +17,13 @@ function InfoItem(props) {
   const [data, setData] = useState([]);
   const { slug } = useParams();
   const [linkImg, setLinkImg] = useState(null);
+  const dispatch = useDispatch();
+
   const [size, setSize] = useState({
     id: null,
     numSize: null,
   });
-  const dispatch = useDispatch();
+
   useEffect(() => {
     policyApi
       .getProductItem(slug)

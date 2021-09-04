@@ -3,26 +3,20 @@ import './style.scss';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function MenuNu({ handlerChangeRemote }) {
+export function MenuGosto({ handlerChangeRemote }) {
   return (
     <>
       <ul className='uls'>
         <li onClick={handlerChangeRemote}>
           <FontAwesomeIcon icon={faChevronLeft} />
-          <span>NỮ</span>
+          <span>GOSTO</span>
         </li>
-        <li>Xem tất cả "NỮ"</li>
-        <li>Hunter</li>
+        <li>Xem tất cả "GOSTO"</li>
+        <li>Giày cao gót</li>
         <li>Sandal</li>
-        <li>Giày Búp Bê</li>
-        <li>Giày Thời trang</li>
-        <li>Giày Chạy Bộ</li>
-        <li>Giày Thể Thao</li>
         <li>Dép</li>
-        <li>Túi Xách</li>
+        <li>Túi xách - Ví</li>
       </ul>
     </>
   );
 }
-
-export default MenuNu;

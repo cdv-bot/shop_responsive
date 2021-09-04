@@ -18,11 +18,11 @@ var settings = {
 function SliderMain(props) {
   return (
     <Slider {...settings}>
-      <img src={slider1} className='imgSlider' />
+      <img src={slider1} alt='logo' className='imgSlider' />
 
-      <img src={slider2} className='imgSlider2' />
+      <img src={slider2} alt='logo' className='imgSlider2' />
 
-      <img src={slider3} className='imgSlider3' />
+      <img src={slider3} alt='logo' className='imgSlider3' />
     </Slider>
   );
 }

@@ -1,39 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import './admin.scss';
+import { useEffect, useState } from 'react';
 import { Col, Row, Tabs } from 'antd';
 import policyApi from '../../api/api';
 import { formatMoneyPoint } from '../../utils/common';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import './admin.scss';
 const { TabPane } = Tabs;
+
 function Admin(props) {
   const history = useHistory();
   const [listData, setListData] = useState(null);
   const [listDataDone, setListDataDone] = useState(null);
   const [datas, setDatas] = useState(null);
+
   useEffect(() => {
-    policyApi.getBuy().then((data) => {
+    (async () => {
+      const data = await policyApi.getBuy();
+      console.log(data);
       const listDataFilter = data.data.filter((item) => {
         return !item.check;
       });
       setListData(listDataFilter);
-      console.log(listDataFilter);
+
       const listDateDoneFilter = data.data.filter((item) => {
         return item.check;
       });
       setListDataDone(listDateDoneFilter);
-    });
+    })();
   }, [datas]);
+
   useEffect(() => {
-    let token = window.localStorage.getItem('token');
-    if (token) {
-      const decode = jwtDecode(token);
-      if (decode.userList?.role !== 'admin') {
-        history.replace('/');
+    try {
+      let token = window.localStorage.getItem('token');
+      if (token) {
+        const decode = jwtDecode(token);
+        if (decode.userList?.role !== 'admin') {
+          history.replace('/');
+        }
       }
+    } catch {
+      console.log('error');
     }
   }, []);
+
   const handlerDone = async (e) => {
     const data = await policyApi.getDoneBuy(e);
     setDatas(data);

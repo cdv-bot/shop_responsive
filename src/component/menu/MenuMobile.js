@@ -1,28 +1,24 @@
-import {
-  faHeart,
-  faSearch,
-  faShoppingCart,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import hot from '../../assets/image/bg_hot.png';
 import logo from '../../assets/image/logo.png';
 import vi from '../../assets/image/vi.png';
 import { deleteProduct } from '../../store/cart';
 import { showMenu } from '../../store/menuMobile';
-import { formatMoney, formatMoneyPoint } from '../../utils/common';
+import { formatMoneyPoint } from '../../utils/common';
 import iconMenu from './../../assets/image/icon-menu.svg';
 import './MenuMobile.scss';
 import Search from './Search';
 
-function MenuMobile({ scrollFix }) {
+export function MenuMobile({ scrollFix }) {
   const data = useSelector((state) => state.cart);
   const [menuHeight, setMenuHeight] = useState(false);
   const dispatch = useDispatch();
+  const Location = useLocation();
   const [action, setAction] = useState(null);
   const menuData = useSelector((state) => state.menuBar);
 
@@ -30,11 +26,13 @@ function MenuMobile({ scrollFix }) {
     let action = showMenu();
     dispatch(action);
   };
+
   const countCart = () => {
     return data.reduce((x, y) => {
       return x + y.count;
     }, 0);
   };
+
   const totalMoneys = () => {
     return data.reduce((x, y) => {
       return x + y.price * y.count;
@@ -44,7 +42,6 @@ function MenuMobile({ scrollFix }) {
   const handleDelete = (id, size) => {
     dispatch(deleteProduct({ id, size }));
   };
-  const Location = useLocation();
   useEffect(() => {
     setAction(Location.pathname);
   }, [Location]);
@@ -140,7 +137,7 @@ function MenuMobile({ scrollFix }) {
                           <p>
                             <Link
                               to={{
-                                pathname: `/product/${item._id}`,
+                                pathname: `/product/${item.maSp}`,
                               }}
                               className='link_style'>
                               {item.title}
@@ -193,5 +190,3 @@ function MenuMobile({ scrollFix }) {
     </div>
   );
 }
-
-export default MenuMobile;

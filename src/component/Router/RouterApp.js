@@ -1,59 +1,58 @@
-import classNames from 'classnames';
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useHistory,
-  useParams,
-} from 'react-router-dom';
-import 'slick-carousel/slick/slick-theme.scss';
-import 'slick-carousel/slick/slick.scss';
-import { SWRConfig } from 'swr';
+import { FooterBottom, FooterTag, FooterInfo } from '../footer';
+import { Route, Switch } from 'react-router-dom';
 import api from '../../api/api';
 import { addProductApi } from '../../store/cart';
 import { showMenu } from '../../store/menuMobile';
-import FooterInfo from '../footer/FooterInfo';
-import FooterTag from '../footer/FooterTag';
-import FooterBottom from '../footer/Footer_bottom';
+import { MenuBar, MenuMobile } from '../menu';
 import MailSign from '../mailSign/MailSign';
-import MapStore from '../mapStore/MapStore';
-import MenuBar from '../menu/MenuBar';
-import MenuMobile from '../menu/MenuMobile';
 import ButtonScroll from '../scrollTop/ButtonScroll';
-import SideBar from '../sideBar/SideBar';
-import Page from './index';
+import SideBar from '../sideBar';
+import Page from './Page';
+import 'slick-carousel/slick/slick-theme.scss';
+import 'slick-carousel/slick/slick.scss';
 import './routerApp.scss';
-
-const fetcher = (resource) => fetch(resource).then((res) => res.json());
 
 export default function RouterApp() {
   const [scrollFix, setScrollFix] = useState(false);
+
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.menuBar);
 
   useEffect(() => {
-    const userId = window.localStorage.getItem('id_user');
-    if (userId) {
-      api.postUserId({ id: userId }).then((data) => {
-        if (data) {
-          dispatch(addProductApi(data));
-        }
-      });
-    } else {
-      api.postUserId({ id: null }).then((x) => {
-        window.localStorage.setItem('id_user', x);
-      });
-    }
+    //create id_user
+    (async () => {
+      const userId = window.localStorage.getItem('id_user');
+      if (!userId) {
+        const idAuto = await api.postUserId({ id: null });
+        window.localStorage.setItem('id_user', idAuto);
+        return;
+      }
+
+      const data = await api.postUserId({ id: userId });
+      dispatch(addProductApi(data));
+    })();
   }, []);
 
-  const data = useSelector((state) => state.menuBar);
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.pageYOffset > 130) {
+        setScrollFix(true);
+      }
+      if (window.pageYOffset < 20) {
+        setScrollFix(false);
+      }
+    };
+  }, []);
+
   const handlerCloseMenu = () => {
     let action = showMenu();
     dispatch(action);
   };
 
-  const PageRouter = (Page) => {
+  const pageRouter = (Page) => {
     let result = null;
     result = Page.map((value, key) => (
       <Route
@@ -66,28 +65,13 @@ export default function RouterApp() {
     return result;
   };
 
-  useEffect(() => {
-    window.onscroll = () => {
-      window.onscroll = () => {
-        if (window.pageYOffset > 130) {
-          setScrollFix(true);
-        }
-        if (window.pageYOffset < 20) {
-          setScrollFix(false);
-        }
-      };
-    };
-  }, []);
-
-  const { location } = useHistory();
-
   return (
-    <SWRConfig value={fetcher}>
+    <>
       <SideBar />
       <MenuBar />
       <div className={classNames('start_main', { tranform_Main: data })}>
         <MenuMobile scrollFix={scrollFix} />
-        <Switch>{PageRouter(Page)}</Switch>
+        <Switch>{pageRouter(Page)}</Switch>
         <FooterTag />
         <MailSign />
         <FooterInfo />
@@ -96,6 +80,6 @@ export default function RouterApp() {
       <ButtonScroll scrollFix={scrollFix} />
 
       {data ? <div className='close_menu' onClick={handlerCloseMenu}></div> : null}
-    </SWRConfig>
+    </>
   );
 }

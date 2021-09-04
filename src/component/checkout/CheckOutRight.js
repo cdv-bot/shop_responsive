@@ -1,7 +1,7 @@
-import { Input, Form, Row, Col, Button } from 'antd';
+import { Button, Col, Form, Input, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { formatMoney, formatMoneyPoint } from '../../utils/common';
+import { formatMoneyPoint } from '../../utils/common';
 import './CheckOutRight.scss';
 export function CheckOutRight({ money }) {
   const data = useSelector((state) => state.cart);

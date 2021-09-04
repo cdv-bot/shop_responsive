@@ -5,7 +5,7 @@ import ItemProduct from '../itemProduct/ItemProduct';
 import ProductListTablet from '../itemProduct/ProductListTablet';
 import './productList.scss';
 function ProductList({ name, apiQuery }) {
-  const { data } = useSWR(`http://localhost:3001/${apiQuery}`);
+  const { data } = useSWR(`${process.env.REACT_APP_API}/${apiQuery}`);
   const checkName = (value) => {
     if (value === 'PHỤ KIỆN') {
       return 'phukien';

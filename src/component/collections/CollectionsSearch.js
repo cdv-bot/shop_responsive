@@ -5,6 +5,7 @@ import { CollectionsFormItemSlider } from './CollectionsFormItemSlider';
 import { CollectionsFormItemSize } from './CollectionsFormItemSize';
 import { CollectionsFormItemColor } from './CollectionsFormItemColor';
 import { formatMoneyPoint } from '../../utils/common';
+
 export default function CollectionsSearch({ filerData }) {
   const [form] = Form.useForm();
   useEffect(() => {

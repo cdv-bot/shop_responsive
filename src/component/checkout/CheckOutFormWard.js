@@ -4,8 +4,8 @@ import React, { useEffect } from 'react';
 import useSWR from 'swr';
 const { Option } = Select;
 export function CheckOutFormWard({ district, province, formField }) {
-  const { data, error } = useSWR(
-    `http://localhost:3001/getWard/${province}/${district}`
+  const { data } = useSWR(
+    `${process.env.REACT_APP_API}/getWard/${province}/${district}`
   );
   useEffect(() => {
     formField.resetFields(['wards']);

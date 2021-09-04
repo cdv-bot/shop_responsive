@@ -1,15 +1,16 @@
+import { Button } from 'antd';
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import news from '../../assets/image/new.png';
-import './itemProductTablet.scss';
-import { addProduct, addProductList, fetchUserById } from '../../store/cart';
-import { Button } from 'antd';
+import { fetchUserById } from '../../store/cart';
 import { formatMoneyPoint } from '../../utils/common';
+import './itemProductTablet.scss';
 
 function ItemProductTablet({ dataItem }) {
   const { img, numberSize, title, price, maSp, _id } = dataItem;
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const [sizes, setSizes] = useState({
@@ -40,7 +41,7 @@ function ItemProductTablet({ dataItem }) {
     <div id='ItemProductTablet'>
       <Link
         to={{
-          pathname: `/product/${_id}`,
+          pathname: `/product/${maSp}`,
         }}
         className='link_img'>
         <img src={img} alt='item' />
@@ -68,6 +69,7 @@ function ItemProductTablet({ dataItem }) {
       <p>{maSp}</p>
       <p className='price'>{formatMoneyPoint(price)} đ</p>
       <Button
+        loading={loading}
         className='buyProduct'
         style={{ width: '100%', height: '50px' }}
         onClick={() => handleBuy(_id)}>

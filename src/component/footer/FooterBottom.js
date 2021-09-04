@@ -1,7 +1,7 @@
 import React from 'react';
 import dangky from '../../assets/image/dadangky.png';
 import './footer_bottom.scss';
-function Footer_bottom(props) {
+export function FooterBottom(props) {
   return (
     <div id='Footer_bottom'>
       <div className='Footer_bottom-list'>
@@ -24,5 +24,3 @@ function Footer_bottom(props) {
     </div>
   );
 }
-
-export default Footer_bottom;

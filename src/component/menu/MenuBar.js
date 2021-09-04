@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
-
-import './MenuBar.scss';
+import { useState } from 'react';
+import classNames from 'classnames';
+import { useSelector } from 'react-redux';
+import { MenuBoy, MenuNam, MenuNu, MenuGosto, MenuGirl } from '../menuMobile';
+import { MenuList } from '../menu';
 import logo from '../../assets/image/logo.png';
 import logo2 from '../../assets/image/Logo2.png';
 
-import MenuNam from '../menuMobile.js/MenuNam';
-import MenuNu from '../menuMobile.js/MenuNu';
-import MenuList from './MenuList';
-import MenuBoy from '../menuMobile.js/MenuBoy';
-import MenuGosto from '../menuMobile.js/MenuGosto';
-import MenuGirl from '../menuMobile.js/MenuGirl';
-import classNames from 'classnames';
-import { useSelector } from 'react-redux';
+import './MenuBar.scss';
 
-function MenuBar(props) {
+export function MenuBar() {
   const [selectItem, setSelectItem] = useState(null);
   const data = useSelector((state) => state.menuBar);
+
   const handlerSelecter = (data) => {
     setSelectItem(data);
   };
@@ -72,5 +68,3 @@ function MenuBar(props) {
     </div>
   );
 }
-
-export default MenuBar;

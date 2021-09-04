@@ -1,4 +1,3 @@
-import React from 'react';
 import './mailSign.scss';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

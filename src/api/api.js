@@ -4,7 +4,7 @@ import axiosClient from './axiosClient';
 
 const policyApi = {
   getProductItem: (id) => {
-    return axiosClient.get(`http://localhost:3001/product/${id}`);
+    return axiosClient.get(`/product/${id}`);
   },
   getDistrict: () => {
     return axiosClient.post(
@@ -12,41 +12,42 @@ const policyApi = {
     );
   },
   postUserId: (data) => {
-    return axiosClient.post('http://localhost:3001/user', data);
+    return axiosClient.post('/user', data);
   },
   addProduct: (data) => {
-    return axiosClient.post('http://localhost:3001/productlist', data);
+    return axiosClient.post('/productlist', data);
   },
   deleteProduct: (data) => {
-    return axiosClient.post('http://localhost:3001/productlist/delete', data);
+    return axiosClient.post('/productlist/delete', data);
   },
   editProduct: (data) => {
-    return axiosClient.post('http://localhost:3001/productlist/edit', data);
+    return axiosClient.post('/productlist/edit', data);
   },
   orderProduct: (data) => {
-    return axiosClient.post('http://localhost:3001/order', data);
+    return axiosClient.post('/order', data);
   },
   login: (data) => {
-    return axiosClient.post('http://localhost:3001/user/login', data);
+    return axiosClient.post('/user/login', data);
   },
   checkToken: () => {
-    return axiosClient.post('http://localhost:3001/user/posttoken');
+    return axiosClient.post('/user/posttoken');
   },
   postComment: (data) => {
-    return axiosClient.post('http://localhost:3001/comment', data);
+    return axiosClient.post('/comment', data);
   },
   getComment: (data) => {
-    return axiosClient.get(`http://localhost:3001/comment/${data}`);
+    return axiosClient.get(`/comment/${data}`);
   },
   logup: (data) => {
-    return axiosClient.post(`http://localhost:3001/user/logup`, data);
+    return axiosClient.post(`/user/logup`, data);
   },
   getBuy: () => {
-    return axiosClient.get('http://localhost:3001/user/listbuyproduct');
+    return axiosClient.get('/user/listbuyproduct');
   },
   getDoneBuy: (data) => {
-    return axiosClient.get(`http://localhost:3001/user/verybuy?id=${data}`);
+    return axiosClient.get(`/user/verybuy?id=${data}`);
   },
+  // getSwr: (data) => useSWR(`/comment/${data}`),
 };
 
 export default policyApi;

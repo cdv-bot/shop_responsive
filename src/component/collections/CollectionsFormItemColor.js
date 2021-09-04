@@ -5,7 +5,7 @@ import './CollectionsFormItemColor.scss';
 import React, { useEffect, useState } from 'react';
 
 export function CollectionsFormItemColor({ queryList, onChange }) {
-  const [checkColor, setCheckColor] = useState('Trắng');
+  const [checkColor, setCheckColor] = useState(null);
   const color = [
     {
       name: 'Đen',

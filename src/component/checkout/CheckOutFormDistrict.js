@@ -6,7 +6,7 @@ import api from '../../api/api';
 const { Option } = Select;
 
 export function CheckOutFormDistrict({ province, formField }) {
-  const { data, error } = useSWR(`http://localhost:3001/getDistrict/${province}`);
+  const { data } = useSWR(`${process.env.REACT_APP_API}/getDistrict/${province}`);
   useEffect(() => {
     formField.setFieldsValue({ district: null });
   }, [province]);

@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import './MenuList.scss';
-function MenuList({ handlerSelecter }) {
+export function MenuList({ handlerSelecter }) {
   return (
     <>
       <ul id='ul_menuList'>
@@ -35,5 +35,3 @@ function MenuList({ handlerSelecter }) {
     </>
   );
 }
-
-export default MenuList;

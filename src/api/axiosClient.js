@@ -2,7 +2,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_API,
   headers: {
     'content-type': 'application/json',
   },
@@ -25,9 +25,10 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     // Handle errors
+
     if (error.request?.status === 401) {
       window.localStorage.removeItem('id_user');
-      window.location.replace('http://localhost:3000/');
+      window.location.replace('/');
     }
 
     if (error.request?.status === 403) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './footerTag.scss';
 
-function FooterTag(props) {
+export function FooterTag(props) {
   return (
     <div id='FooterTag'>
       <p className='hashTag'>
@@ -61,5 +61,3 @@ function FooterTag(props) {
     </div>
   );
 }
-
-export default FooterTag;

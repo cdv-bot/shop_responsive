@@ -1,23 +1,31 @@
-import { Button, Form, Input, notification } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import React, { useEffect } from 'react';
-import './login.scss';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 import { Link, useHistory } from 'react-router-dom';
 import policyApi from '../../api/api';
-import jwtDecode from 'jwt-decode';
+import { infoUser } from '../../store/user';
+import { Button, Form, Input, notification } from 'antd';
+import './login.scss';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
 function Login(props) {
+  const dispatch = useDispatch();
   const history = useHistory();
+
   useEffect(() => {
     if (window.localStorage.getItem('token')) {
       history.replace('/');
     }
   }, []);
+
   const onFinish = async (value) => {
     try {
       const { token } = await policyApi.login(value);
       window.localStorage.setItem('token', token);
       if (token) {
         const decode = jwtDecode(token);
+        console.log(decode);
+        dispatch(infoUser(decode?.userList));
         if (decode.userList?.role === 'admin') {
           history.replace('/admin');
         }
@@ -25,6 +33,7 @@ function Login(props) {
       notification.success({
         message: 'Đăng nhập thành công',
       });
+
       history.replace('/');
     } catch {
       notification.error({

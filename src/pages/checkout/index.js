@@ -11,6 +11,7 @@ function Checkout(props) {
   };
   const data = useSelector((state) => state.cart);
   const history = useHistory();
+
   useEffect(() => {
     if (data.length === 0) {
       history.push('/');

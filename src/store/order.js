@@ -23,7 +23,7 @@ const order = createSlice({
         message: 'Đã đặt hàng thành công.',
         description: 'Chúng tôi sẽ liên hệ bạn sớm nhất.',
       });
-      window.location.replace('http://localhost:3000/');
+      window.location.replace('/');
       return action.payload.data;
     },
   },

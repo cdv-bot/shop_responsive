@@ -10,8 +10,9 @@ function Search(props) {
   const [showSearch, setShowSearch] = useState(false);
   const inputRef = useRef();
   const setTime = useRef(null);
+
   const { data, error } = useSWR(
-    `http://localhost:3001/search/product?key=${textSearch}`
+    `${process.env.REACT_APP_API}/search/product?key=${textSearch}`
   );
 
   const handleOnChange = () => {
@@ -47,8 +48,8 @@ function Search(props) {
             data.map((item, index) => {
               return (
                 <li key={index}>
-                  <img src={item.img} alt='img' />
-                  <Link to={item._id} className='link_sp'>
+                  <img src={item?.img} alt='img' />
+                  <Link to={item?.maSp} className='link_sp'>
                     {item.title}
                   </Link>
                 </li>
