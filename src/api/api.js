@@ -47,7 +47,18 @@ const policyApi = {
   getDoneBuy: (data) => {
     return axiosClient.get(`/user/verybuy?id=${data}`);
   },
-  // getSwr: (data) => useSWR(`/comment/${data}`),
+  getListOrder: (data) => {
+    return axiosClient.post(`/listorder`, data);
+  },
+  getListAdmin: () => {
+    return axiosClient.get(`/listadmin`);
+  },
+  upOrder: (data) => {
+    return axiosClient.post(`/uporder`, data);
+  },
+  cancelOrder: (data) => {
+    return axiosClient.post(`/canceladmin`, data);
+  },
 };
 
 export default policyApi;

@@ -19,7 +19,17 @@ function SideBar(props) {
         <li>Tìm cửa hàng</li>
         <li>Liên hệ hợp tác</li>
         <li>Mua Hàng Tại Amazon</li>
-        <li>Kiểm tra đơn hàng </li>
+        <li>
+          {dataInfo?.role === 'admin' ? (
+            <Link style={{ color: 'white' }} to='/admin'>
+              Kiểm tra tổng đơn
+            </Link>
+          ) : (
+            <Link style={{ color: 'white' }} to='/order'>
+              Kiểm tra đơn hàng
+            </Link>
+          )}
+        </li>
         {dataInfo ? (
           <li>
             <span className='linkSide'>

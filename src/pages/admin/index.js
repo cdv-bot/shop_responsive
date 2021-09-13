@@ -1,38 +1,22 @@
 import { useEffect, useState } from 'react';
-import { Col, Row, Tabs } from 'antd';
-import policyApi from '../../api/api';
-import { formatMoneyPoint } from '../../utils/common';
-import { ArrowRightOutlined } from '@ant-design/icons';
-import { useHistory } from 'react-router-dom';
+import { Button, Col, Divider, notification, Row } from 'antd';
 import jwtDecode from 'jwt-decode';
+import { useHistory } from 'react-router-dom';
+import useSWR from 'swr';
+import { formatMoneyPoint } from '../../utils/common';
 import './admin.scss';
-const { TabPane } = Tabs;
+import policyApi from '../../api/api';
 
 function Admin(props) {
   const history = useHistory();
-  const [listData, setListData] = useState(null);
-  const [listDataDone, setListDataDone] = useState(null);
-  const [datas, setDatas] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const data = await policyApi.getBuy();
-      console.log(data);
-      const listDataFilter = data.data.filter((item) => {
-        return !item.check;
-      });
-      setListData(listDataFilter);
-
-      const listDateDoneFilter = data.data.filter((item) => {
-        return item.check;
-      });
-      setListDataDone(listDateDoneFilter);
-    })();
-  }, [datas]);
+  const [loading, setLoading] = useState(false);
+  let token = window.localStorage.getItem('token');
+  const { data, mutate } = useSWR(
+    `${process.env.REACT_APP_API}/listadmin?token=Bearer ${token}`
+  );
 
   useEffect(() => {
     try {
-      let token = window.localStorage.getItem('token');
       if (token) {
         const decode = jwtDecode(token);
         if (decode.userList?.role !== 'admin') {
@@ -44,139 +28,118 @@ function Admin(props) {
     }
   }, []);
 
-  const handlerDone = async (e) => {
-    const data = await policyApi.getDoneBuy(e);
-    setDatas(data);
+  const handleOrder = async (id) => {
+    try {
+      setLoading(true);
+      await policyApi.upOrder({ id });
+      notification.success({
+        message: 'Đã lên đơn hàng!',
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleCancel = async (data) => {
+    try {
+      setLoading(true);
+      await policyApi.cancelOrder({ data });
+      notification.success({
+        message: 'Đã hủy đơn hàng!',
+      });
+      mutate();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div id='admin'>
-      <Tabs defaultActiveKey='1'>
-        <TabPane tab='Chưa đóng hàng' key='1'>
-          {listData &&
-            listData.map((data, index) => {
-              return (
-                <div key={index} className='list_product'>
-                  <Row gutter={[8]} className='row_info'>
-                    <Col span={4}>
-                      <span>Họ tên:</span>
-                      <b> {data.data.data.username}</b>
-                    </Col>
-                    <Col span={4}>
-                      <span>SĐT:</span>
-                      <b> {data.data.data.phone}</b>
-                    </Col>
-                    <Col span={4}>
-                      <span>Tỉnh:</span>
-                      <span> Thanh Hóa</span>
-                    </Col>
-                    <Col span={4}>
-                      <span>Huyện:</span>
-                      <span> Vĩnh Lộc</span>
-                    </Col>
-                    <Col span={4}>
-                      <span>Xã:</span>
-                      <span> Vĩnh Ninh</span>
-                    </Col>
-                    <Col span={3}>
-                      <span>Địa chỉ:</span>
-                      <span> {data.data?.data.address}</span>
-                    </Col>
-                    <Col span={1} className='back_done'>
-                      <div onClick={() => handlerDone(data._id)}>
-                        <ArrowRightOutlined />
-                      </div>
-                    </Col>
-                  </Row>
-
-                  {data.data.product.map((item, index) => {
-                    return (
-                      <>
-                        <Row gutter={[8]}>
-                          <Col span={12}>
-                            <span>Sản phẩm:</span>
-                            <span> {item?.title}</span>
-                          </Col>
-                          <Col span={6}>
-                            <span>Size:</span>
-                            <span> {item?.size}</span>
-                          </Col>
-                          <Col span={6}>
-                            <span>Số lượng:</span>
-                            <span> {item?.count}</span>
-                          </Col>
-                        </Row>
-                      </>
-                    );
-                  })}
-                  <div className='money_count'>
-                    <span>Tổng tiền:</span>
-                    <span> {formatMoneyPoint(data.data?.money)}</span>
+      {data &&
+        data.data.map(
+          (
+            { money, maphuongxa, tinh, huyen, product, _id, address, userId },
+            index
+          ) => {
+            return (
+              <div className='info' key={index}>
+                <p className='info__name'>Đỗ Văn An</p>
+                <Row className='info__addrees'>
+                  <Col span={5}>
+                    <b>Địa chỉ:</b>
+                    <p>{address}</p>
+                  </Col>
+                  <Col span={5}>
+                    <b>Xã/Phường:</b>
+                    <p>{maphuongxa}</p>
+                  </Col>
+                  <Col span={5}>
+                    <b>Quận/Huyện:</b>
+                    <p>{huyen}</p>
+                  </Col>
+                  <Col span={4}>
+                    <b>Tỉnh/Thành phố:</b>
+                    <p>{tinh}</p>
+                  </Col>
+                  <Col span={5}>
+                    <Row gutter={[8]}>
+                      <Col>
+                        <Button
+                          type='primary'
+                          loading={loading}
+                          onClick={() => handleOrder(_id)}
+                          size='small'>
+                          LÊN ĐƠN
+                        </Button>
+                      </Col>
+                      <Col>
+                        <Button
+                          type='primary'
+                          loading={loading}
+                          danger
+                          size='small'
+                          onClick={() =>
+                            handleCancel({
+                              money,
+                              maphuongxa,
+                              tinh,
+                              huyen,
+                              product,
+                              _id,
+                              address,
+                              userId,
+                            })
+                          }>
+                          HỦY ĐƠN
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+                <Divider style={{ margin: '7px' }} />
+                {product.map(({ title, count, price, img }, index) => (
+                  <div className='info__list' key={index}>
+                    <img className='info__list-img' src={img} alt='img' />
+                    <div className='info__list-text'>
+                      <p>{title}</p>
+                      <p>x{count}</p>
+                    </div>
+                    <div className='info__list-money'>
+                      ₫{formatMoneyPoint(price)}
+                    </div>
                   </div>
+                ))}
+                <Divider style={{ margin: '7px' }} />
+                <div className='info__count'>
+                  <p>Tổng: ₫{formatMoneyPoint(money)}</p>
                 </div>
-              );
-            })}
-        </TabPane>
-        <TabPane tab='Đóng hàng & gửi' key='2'>
-          {listDataDone &&
-            listDataDone.map((data, index) => {
-              return (
-                <div key={index} className='list_product'>
-                  <Row gutter={[8]} className='row_info'>
-                    <Col span={4}>
-                      <span>Họ tên:</span>
-                      <b> {data.data.data.username}</b>
-                    </Col>
-                    <Col span={4}>
-                      <span>SĐT:</span>
-                      <b> {data.data.data.phone}</b>
-                    </Col>
-                    <Col span={4}>
-                      <span>Tỉnh:</span>
-                      <span> Thanh Hóa</span>
-                    </Col>
-                    <Col span={4}>
-                      <span>Huyện:</span>
-                      <span> Vĩnh Lộc</span>
-                    </Col>
-                    <Col span={4}>
-                      <span>Xã:</span>
-                      <span> Vĩnh Ninh</span>
-                    </Col>
-                    <Col span={4}>
-                      <span>Địa chỉ:</span>
-                      <span> {data.data?.data.address}</span>
-                    </Col>
-                  </Row>
-
-                  {data.data.product.map((item, index) => {
-                    return (
-                      <>
-                        <Row gutter={[8]}>
-                          <Col span={12}>
-                            <span>Sản phẩm:</span>
-                            <span> {item?.title}</span>
-                          </Col>
-                          <Col span={6}>
-                            <span>Size:</span>
-                            <span> {item?.size}</span>
-                          </Col>
-                          <Col span={6}>
-                            <span>Số lượng:</span>
-                            <span> {item?.count}</span>
-                          </Col>
-                        </Row>
-                      </>
-                    );
-                  })}
-                  <div className='money_count'>
-                    <span>Tổng tiền:</span>
-                    <span> {formatMoneyPoint(data.data?.money)}</span>
-                  </div>
-                </div>
-              );
-            })}
-        </TabPane>
-      </Tabs>
+              </div>
+            );
+          }
+        )}
     </div>
   );
 }

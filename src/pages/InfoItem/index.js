@@ -13,9 +13,11 @@ import { useDispatch } from 'react-redux';
 import { fetchUserById } from '../../store/cart';
 import { formatMoneyPoint } from '../../utils/common';
 import Comment from '../../component/infoItem/Comment';
+import { Button } from 'antd';
 function InfoItem(props) {
   const [data, setData] = useState([]);
   const { slug } = useParams();
+  const [loading, setLoading] = useState(false);
   const [linkImg, setLinkImg] = useState(null);
   const dispatch = useDispatch();
 
@@ -35,16 +37,23 @@ function InfoItem(props) {
       });
   }, [slug]);
 
-  const handleBuy = () => {
-    const arrSize = data?.numberSize.slice(1).length;
-    if (size.numSize || arrSize === 0) {
-      dispatch(
-        fetchUserById({
-          id: data._id,
-          numSize: arrSize ? size.numSize : 0,
-          ...data,
-        })
-      );
+  const handleBuy = async () => {
+    try {
+      setLoading(true);
+      const arrSize = data?.numberSize.slice(1).length;
+      if (size.numSize || arrSize === 0) {
+        await dispatch(
+          fetchUserById({
+            id: data._id,
+            numSize: arrSize ? size.numSize : 0,
+            ...data,
+          })
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -120,7 +129,9 @@ function InfoItem(props) {
           </span>
         </div>
         <div className='content_link'>
-          <button onClick={() => handleBuy()}>MUA NGAY</button>
+          <Button loading={loading} onClick={() => handleBuy()}>
+            MUA NGAY
+          </Button>
           <button>🖤 Thêm vào yêu thích</button>
         </div>
         <div className='content_contact'>

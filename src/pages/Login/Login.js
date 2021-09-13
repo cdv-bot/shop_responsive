@@ -24,17 +24,16 @@ function Login(props) {
       window.localStorage.setItem('token', token);
       if (token) {
         const decode = jwtDecode(token);
-        console.log(decode);
-        dispatch(infoUser(decode?.userList));
+        await dispatch(infoUser(decode?.userList));
         if (decode.userList?.role === 'admin') {
-          history.replace('/admin');
+          history.push('/admin');
+        } else {
+          history.push('/');
         }
       }
       notification.success({
         message: 'Đăng nhập thành công',
       });
-
-      history.replace('/');
     } catch {
       notification.error({
         message: 'Thất bại.',

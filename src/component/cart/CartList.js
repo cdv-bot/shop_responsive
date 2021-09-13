@@ -1,5 +1,5 @@
 import { deleteProduct, editProduct } from '../../store/cart';
-import { formatMoney, formatMoneyPoint } from '../../utils/common';
+import { formatMoneyPoint } from '../../utils/common';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   faLongArrowAltLeft,

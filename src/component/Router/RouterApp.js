@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { FooterBottom, FooterTag, FooterInfo } from '../footer';
@@ -64,9 +64,8 @@ export default function RouterApp() {
     ));
     return result;
   };
-
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <SideBar />
       <MenuBar />
       <div className={classNames('start_main', { tranform_Main: data })}>
@@ -80,6 +79,6 @@ export default function RouterApp() {
       <ButtonScroll scrollFix={scrollFix} />
 
       {data ? <div className='close_menu' onClick={handlerCloseMenu}></div> : null}
-    </>
+    </Suspense>
   );
 }

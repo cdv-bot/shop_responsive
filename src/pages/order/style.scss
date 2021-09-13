@@ -1,0 +1,86 @@
+#Order {
+  background-color: #f5f5f5;
+
+  .orderTab {
+    display: flex;
+    margin: auto;
+    width: 1200px;
+    background-color: white;
+    padding: 10px 10px;
+    &__list {
+      width: 100%;
+      display: flex;
+      border-top: 1px solid #e8e8e8;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 10px 15px;
+      &-img {
+        width: 90px;
+        height: 90px;
+      }
+      &-name {
+        padding-left: 10px;
+        flex: 1;
+        p {
+          margin: 5px 0;
+          &:nth-child(2) {
+            color: #9b9b9b;
+          }
+        }
+      }
+      &-money {
+        align-self: center;
+        padding-left: 10px;
+
+        p {
+          color: rgb(175, 53, 53);
+          margin: 0;
+          font-size: 1.7rem;
+        }
+      }
+    }
+  }
+  .total {
+    width: 1200px;
+    height: 60px;
+    display: flex;
+    margin: auto;
+    padding-right: 10px;
+    background-color: white;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    p {
+      margin: 0;
+      font-size: 2rem;
+      color: red;
+    }
+  }
+  .delivering {
+    display: flex;
+    margin: auto;
+    width: 1200px;
+    height: 400px;
+    .delivering__nuti {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      p {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 2rem;
+      }
+      .noDelivering {
+        background-position: 50%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 100px;
+        width: 1200px;
+
+        background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/5fafbb923393b712b96488590b8f781f.png);
+      }
+    }
+  }
+}

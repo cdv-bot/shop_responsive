@@ -26,15 +26,22 @@ function ItemProductTablet({ dataItem }) {
     });
   };
 
-  const handleBuy = (id) => {
-    if (id === sizes.id || listSize.length === 0) {
-      dispatch(
-        fetchUserById({
-          id,
-          numSize: listSize.length ? sizes.numSize : 0,
-          ...dataItem,
-        })
-      );
+  const handleBuy = async (id) => {
+    try {
+      if (id === sizes.id || listSize.length === 0) {
+        setLoading(true);
+        await dispatch(
+          fetchUserById({
+            id,
+            numSize: listSize.length ? sizes.numSize : 0,
+            ...dataItem,
+          })
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (

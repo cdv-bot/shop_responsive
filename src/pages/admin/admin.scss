@@ -1,19 +1,54 @@
 #admin {
   width: 1200px;
   margin: auto;
-  .list_product {
-    border-bottom: 1px solid;
-    padding-bottom: 10px;
-    .money_count {
+  margin-top: 10px;
+  padding: 10px 10px;
+  p {
+    padding: 0;
+    margin: 5px;
+  }
+
+  .info {
+    margin-top: 20px;
+    box-shadow: 1px 1px 1px 3px #eee;
+    padding: 10px;
+    &__name {
       font-weight: bold;
-      font-size: 1.7rem;
-      margin-top: 10px;
-    }
-    .row_info {
-      margin-top: 10px;
       font-size: 1.6rem;
-      .back_done {
-        cursor: pointer;
+    }
+    &__addrees {
+    }
+    &__list {
+      display: flex;
+      margin-bottom: 6px;
+      &-img {
+        width: 60px;
+        height: 60px;
+      }
+      &-text {
+        flex-grow: 1;
+
+        p {
+          &:nth-child(1) {
+            font-size: 1.7rem;
+            margin-top: 0;
+          }
+        }
+      }
+      &-money {
+        align-self: center;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: rgb(224, 64, 64);
+      }
+    }
+    &__count {
+      margin-top: 10px;
+      p {
+        text-align: end;
+        font-size: 2rem;
+        font-weight: bold;
+        color: red;
       }
     }
   }

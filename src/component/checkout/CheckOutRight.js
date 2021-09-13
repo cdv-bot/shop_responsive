@@ -7,6 +7,7 @@ export function CheckOutRight({ money }) {
   const data = useSelector((state) => state.cart);
 
   const [discout, setDiscount] = useState(0);
+
   const totalMoneys = () => {
     return data.reduce((x, y) => {
       return x + y.price * y.count;
@@ -16,7 +17,7 @@ export function CheckOutRight({ money }) {
   const onFinish = (e) => {
     if (e.discount && ['VIPSUPER'].includes(e.discount.trim().toUpperCase())) {
       setDiscount((totalMoneys() / 100) * 20);
-      money(totalMoneys - (totalMoneys() / 100) * 20);
+      money(totalMoneys() - (totalMoneys() / 100) * 20);
     } else {
       setDiscount(0);
     }

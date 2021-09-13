@@ -9,6 +9,9 @@ function Checkout(props) {
   const money = (e) => {
     setMoneys(e);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const data = useSelector((state) => state.cart);
   const history = useHistory();
 

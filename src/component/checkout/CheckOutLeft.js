@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CheckOutLeft.scss';
 import logo from '../../assets/image/logo.png';
 import { Link, useHistory } from 'react-router-dom';
@@ -15,24 +15,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { orderApi } from '../../store/order';
 
 export function CheckOutLeft({ moneys }) {
+  const [loading, setLoading] = useState(false);
   const data = useSelector((state) => state.cart);
   const [form] = Form.useForm();
-  const history = useHistory();
   const dispatch = useDispatch();
-  const onFinish = (e) => {
-    dispatch(
-      orderApi({
-        data: e,
-        product: data.map((item) => {
-          return {
-            title: item.title,
-            size: item.numSize,
-            count: item.count,
-          };
-        }),
-        money: moneys,
-      })
-    );
+  const onFinish = async (e) => {
+    try {
+      setLoading(true);
+      await dispatch(
+        orderApi({
+          data: e,
+          product: data.map((item) => {
+            return {
+              title: item.title,
+              size: item.numSize,
+              count: item.count,
+              img: item.img,
+              price: item.price,
+            };
+          }),
+          money: moneys,
+          checkorder: false,
+        })
+      );
+    } catch (er) {
+      console.log(er);
+    } finally {
+      setLoading(true);
+    }
   };
   return (
     <div id='checkout'>
@@ -127,7 +137,11 @@ export function CheckOutLeft({ moneys }) {
               <FontAwesomeIcon icon={faChevronLeft} className='cart_buy-icon' />
               <Link to='/cart'>Giỏ hàng</Link>
             </div>
-            <Button type='primary' htmlType='submit' style={{ height: '60px' }}>
+            <Button
+              type='primary'
+              loading={loading}
+              htmlType='submit'
+              style={{ height: '60px' }}>
               Thanh toán
             </Button>
           </div>
