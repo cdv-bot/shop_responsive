@@ -16,7 +16,6 @@ export default function Order(props) {
     `${process.env.REACT_APP_API}/listcancel?id=${userId}`
   );
 
-  console.log(cancelorder);
   useEffect(() => {
     (async () => {
       try {
@@ -28,8 +27,9 @@ export default function Order(props) {
       }
     })();
   }, []);
-  const totalMoney = () => {
-    return productList.reduce((x, { money }) => {
+  const totalMoney = (data) => {
+    if (!data) return 0;
+    return data.reduce((x, { money }) => {
       return x + money;
     }, 0);
   };
@@ -65,7 +65,7 @@ export default function Order(props) {
           )}
 
           <div className='total'>
-            <p>Tổng tiền: ₫{formatMoneyPoint(totalMoney())}</p>
+            <p>Tổng tiền: ₫{formatMoneyPoint(totalMoney(productList))}</p>
           </div>
         </TabPane>
         <TabPane tab='Đang giao' key='2'>
@@ -97,7 +97,7 @@ export default function Order(props) {
           )}
 
           <div className='total'>
-            <p>Tổng tiền: ₫{formatMoneyPoint(totalMoney())}</p>
+            <p>Tổng tiền: ₫{formatMoneyPoint(totalMoney(transport))}</p>
           </div>
         </TabPane>
         <TabPane tab='Đã bị hủy' key='3'>
@@ -129,7 +129,7 @@ export default function Order(props) {
           )}
 
           <div className='total'>
-            <p>Tổng tiền: ₫{formatMoneyPoint(totalMoney())}</p>
+            <p>Tổng tiền: ₫{formatMoneyPoint(totalMoney(cancelorder))}</p>
           </div>
         </TabPane>
       </Tabs>
